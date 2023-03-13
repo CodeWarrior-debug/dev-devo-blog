@@ -1,11 +1,45 @@
+import Link from 'next/link'
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { Alegreya, Monsieur_La_Doulaise, Montserrat} from 'next/font/google'
+import cls from "classnames"
 
 // TODO change font
-const inter = Inter({ subsets: ['latin'] })
+
+const alegreya = Alegreya({ subsets: ['latin'] })
+const montserrat = Montserrat({ subsets: ['latin'] })
+
+
+
 
 export default function Home() {
+
+  const myBlogs = 
+  [
+{    title: 'Something in the way',
+post: 'Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.' ,
+author:'Jamesbo',
+date: '12/28/9999',
+subtitle: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+url:"/blog-1"
+},
+{title: 'Nobody knows my sorrow',
+post: 'Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.' ,
+author:'Jamesyboy',
+date: '12/28/9199',
+subtitle: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+url:"/blog-2"
+},
+{title: 'Winsome Ways of Women',
+post: 'Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.' ,
+author:'Notthisguy',
+date: '12/28/9199',
+subtitle: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+url:"/blog-3"
+}
+  ]
+
+
+
   return (
     <>
       <Head>
@@ -15,11 +49,52 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main >
-        <div className='text-black grid place-items-center min-h-screen bg-blue-600 p-[8em] border-slate-800 '>
+        <div className='text-black grid place-items-center min-h-screen bg-blue-800 p-[2em] '>
+          {/* TODO find exact blue and cream colors (maybe cream gradient?) desired) */}
         
-          <div className=' bg-[#FFFEF2] min-h-[80vw] min-w-[60vw] flex flex-col items-center p-[2em] rounded-2xl'>
-            Something in the way
+
+          <div className= 'bg-[#FFFEF2] min-h-[80vh] min-w-[65vw] flex flex-col items-center p-[2em] rounded-2xl'>
+            
+  {/* CARD - COMPONENTIZE */}
+    {
+      myBlogs.map((blog)=>{
+        return(
+          <>
+          <div className='bg-[#705721] text-[#FFFEF2] p-4 rounded-xl mb-[1em]'>
+
+            <div className={cls(montserrat.className,'bg-brown-500 text-slate-300 uppercase text-center text-xl font-extrabold')}>
+            {/* <div className={cls(montserrat.className,'bg-brown-500  uppercase text-center text-4xl font-extrabold')}> */}
+              {blog.title}
+            </div>
+
+            <div className={cls(alegreya.className, 'text-[#ddddda] text-sm p-2')}>
+              {blog.subtitle}
+            </div>
+  
+            <div className={cls(alegreya.className, 'text-[#ddddda] text-sm p-2 flex flex-row flex-wrap justify-evenly')}>
+                
+            <div className={cls(alegreya.className, 'text-[#ddddda] font-bold text-base p-1 min-w-[3em]')}>
+              {blog.author}
+            </div>
+            
+            <div className={cls(alegreya.className, 'text-[#ddddda] font-bold text-base p-1 min-w-[3em]')}>
+              {blog.date}
+            </div>
+            </div>
+
+
           </div>
+          </>
+        )
+      })
+    }
+    
+
+
+
+          </div>
+
+
           </div>
               </main>
     </>
