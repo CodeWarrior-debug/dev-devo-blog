@@ -1,37 +1,20 @@
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-// import { modules } from '../components/Editor'
+import "react-quill/dist/quill.snow.css";
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
   ssr: false,
   loading: () => <p>Loading ...</p>,
 })
 
-const modules2 = {
-  toolbar: [
-    [{ header: '1' }, { header: '2' }, { header: '3' }, { font: [] }],
-    [{ size: [] }],
-    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-    [
-      { list: 'ordered' },
-      { list: 'bullet' },
-      { indent: '-1' },
-      { indent: '+1' },
-    ],
-    ['link', 'image', 'video'],
-    ['clean'],
-  ],
-  clipboard: {
-    // toggle to add extra line breaks when pasting HTML:
-    matchVisual: false,
-  },
-}
-
-export default function Write() {
+export default function Home() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [isDraft, setIsDraft] = useState(true);
   const [isPublished, setIsPublished] = useState(false);
+
+// TOOD handle backend...
+
 
   function submitHandler(event) {
     event.preventDefault();
@@ -62,11 +45,31 @@ export default function Write() {
     setTitle(event.target.value);
   }
 
+  const modules = {
+    toolbar: [
+      [{ header: '1' }, { header: '2' }, { header: '3' }, { font: [] }],
+      [{ size: [] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [
+        { list: 'ordered' },
+        { list: 'bullet' },
+        { indent: '-1' },
+        { indent: '+1' },
+      ],
+      ['link', 'image', 'video'],
+      ['clean'],
+    ],
+    clipboard: {
+      // toggle to add extra line breaks when pasting HTML:
+      matchVisual: false,
+    },
+  }
+
   return (
-    <form onSubmit={submitHandler} className="text-black border-4 border-black">
+    <form onSubmit={submitHandler}>
       <label htmlFor="title">Title</label>
-      <input type="text" value={title} name="title" placeholder="Enter a title" className="text-black border-4 border-black" onChange={handleTitleChange} required />
-      <QuillNoSSRWrapper modules={modules2} onChange={setContent} theme="snow" className="text-black border-4 border-black h-[60vh]"/>
+      <input type="text" value={title} name="title" placeholder="Enter a title" onChange={handleTitleChange} required />
+      <QuillNoSSRWrapper modules={modules} onChange={setContent} theme="snow" />
       <button>Save</button>
       <p>{content}</p>
     </form>
