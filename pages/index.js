@@ -82,7 +82,7 @@ comments:[]
         return(
           <>
           <div className='bg-[#705721] text-[#FFFEF2] p-4 rounded-xl mb-[1em] min-w-[16em]'>
-          <Link href={"blogs/" + connectedTitleUrl(blog.title,"_",blog.id)}>
+          <Link href={"blogs/" + connectedTitleUrl(blog.title, blog.id)}>
             <div className={cls(montserrat.className,'bg-brown-500 text-slate-300 uppercase text-center text-xl font-extrabold')}>
               {blog.title}
             </div>
