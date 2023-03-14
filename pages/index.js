@@ -1,13 +1,9 @@
-import Link from 'next/link'
 import Head from 'next/head'
-import { Alegreya, Monsieur_La_Doulaise, Montserrat} from 'next/font/google'
-import cls from "classnames"
 import Header from '@/components/Header'
+import Card from '@/components/Card'
 
 // TODO change font
 
-const alegreya = Alegreya({ subsets: ['latin'] })
-const montserrat = Montserrat({ subsets: ['latin'] })
 
 
 export default function Home() {
@@ -47,19 +43,19 @@ author:'Notthisguy',
 date: '12/28/9199',
 subtitle: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
 url:"/winsome_ways_of_women_3",
-id:3,
+idNum:3,
 tags:[],
 comments:[]
 }
   ]
 
-  const connectedTitleUrl = (title, id)=>{
-      return title.split(' ').join('_') + "-" + id
-        
-      }
-      
-  
 
+      
+
+
+
+
+  
 
   return (
     <>
@@ -78,47 +74,49 @@ comments:[]
           <div className= 'bg-[#FFFEF2] min-h-[80vh] min-w-[65vw] flex flex-col items-center p-[2em] rounded-2xl'>
             
   {/* CARD - COMPONENTIZE */}
-    {
+    {/* {
       myBlogs.map((blog)=>{
         return(
           <>
-          <Link href={"blogs/" + connectedTitleUrl(blog.title, blog.id)}>
-          <div className='bg-[#705721] text-[#FFFEF2] p-4 rounded-xl mb-[1em] min-w-[16em]'>
-
-            <div className={cls(montserrat.className,'bg-brown-500 text-slate-300 uppercase text-center text-xl font-extrabold')}>
-              {blog.title}
-            </div>
-            <div className={cls(alegreya.className,'text-[#ddddda]') }>
-
-            <div className={'text-[#ddddda] text-sm p-2'}>
-              {blog.subtitle}
-            </div>
-                
-            <div className={ ' font-bold text-base p-1 min-w-[3em]'}>
-              {blog.author}
-            </div>
-            
-            <div className={ ' font-bold text-base p-1 min-w-[3em]'}>
-              {blog.date}
-            </div>
-            </div>
-          </div>
-          </Link>
+          <Card 
+          title={blog.title}
+          subtitle={blog.subtitle}
+          author={blog.author}
+          date={blog.date}
+          id={blog.idNum}
+          url={blog.url}
+          />
 
 
           </>
         )
       })
-    }
+    } */}
+    {
+      myBlogs.map((blog)=>
+      {
+        return(
     
+    <Card
+    key={blog.id}
+    title={blog.title}
+    subtitle={blog.subtitle}
+    author={blog.author}
+    date={blog.date}
+    id={blog.idNum}
+    url={blog.url}
+    
+    />
+      )
 
-
-
-          </div>
+}
+      )
+}</div>
 
 
           </div>
               </main>
     </>
-  )
-}
+)}
+
+
