@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // import { getCountFromServer,getDocs,getDoc,getFirestore ,collection, addDoc,doc, setDoc, Timestamp, updateDoc, arrayUnion, arrayRemove, increment, deleteDoc} from "firebase/firestore";
-import { getDocs, getFirestore ,collection, updateDoc, addDoc, doc, setDoc, Timestamp} from "firebase/firestore";
+import { getDocs, getFirestore ,collection, updateDoc, addDoc, doc, setDoc, Timestamp, } from "firebase/firestore";
 // import { Post} from "./objectDefs"
 import React , {useEffect} from 'react'
 
@@ -22,20 +22,49 @@ const firebaseConfig = {
 const Compose = () => {
 
   useEffect(()=>{
-    const createOrUpdatePost= async()=>{
+
+    const retrievePosts = async ()=> {
+
+      const docsRef = collection(db, 'posts');
+      let allItems = await getDocs(docsRef);
+      
+      allItems.forEach(doc=>{
+        let docData = doc.data()
+        console.log("object: ", docData.post)
+        console.log("post: ", docData.post)
+
+        })
+      // console.log(allTodos.docs)
+
+  }
+
+  retrievePosts();
+  // TODO: why running twice, showing blank then populated?
+
+  },[])
+
+      
+      // if (docSnap.exists()){
+      //   console.log(docSnap)
+      //   return docSnap.data()
+      // } else{
+      //   console.log("no such doc")
+      // }
+    
+ 
+
+    // const createPost= async()=>{
       // constructor(title,post,author,createddateTime, updateddateTime,subtitle,url,idNum,tagsArr,commentsArr){
 
     
 // TEST 1: will setDoc it erase all other fields if only some fields set? YES
-// TEST 2: does updateDoc erase all other fields if only some fields set? NO
-
     
     // await setDoc(doc(db,"posts","2"),{
     //     title:"The best topics",
     //     post:"You know what they are! God and good books!",
     //     author:"James",
-    //     createddateTime:"99/99/12 02:02",
-    //     updateddateTime:"99/99/12 02:02",
+    //     createddateTime:new Date(),
+    //     updateddateTime:"",
     //     subtitle:"You can't wait to hear just how good these topics are...",
     //     url:"/the_best_topics_2",
     //     idNum:2,
@@ -43,25 +72,29 @@ const Compose = () => {
     //     commentsArr:["great God almighty","i hate emerson"]
     // })
 
-    await updateDoc(doc(db,"posts","2"),{
-      // title:"The best topics",
-      // post:"You know what they are! God and good books!",
-      // author:"James",
-      createddateTime: new Date(),
-      // updateddateTime:"99/99/12 02:02",
-      // subtitle:"You can't wait to hear just how good these topics are...",
-      // url:"/the_best_topics_2",
-      // idNum:2,
-      // tagsArr:["theology", "literature"],
-      // commentsArr:["great God almighty","i hate emerson"]
-  })
+// TEST 2: does updateDoc erase all other fields if only some fields set? NO
+
+  //   await updateDoc(doc(db,"posts","2"),{
+  //     // title:"The best topics",
+  //     // post:"You know what they are! God and good books!",
+  //     // author:"James",
+  //     createddateTime: new Date(),
+  //     // updateddateTime:"99/99/12 02:02",
+  //     // subtitle:"You can't wait to hear just how good these topics are...",
+  //     // url:"/the_best_topics_2",
+  //     // idNum:2,
+  //     // tagsArr:["theology", "literature"],
+  //     // commentsArr:["great God almighty","i hate emerson"]
+  // })
+
+//   await getDocs(db,"posts"){
+// console.log()
+//   }
+     
+    // }
+
     
-    
-    
-    }
-    
-    createOrUpdatePost();
-  },[])
+    // createOrUpdatePost();
   
   return (
     <>
