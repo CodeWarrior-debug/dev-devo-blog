@@ -82,27 +82,30 @@ comments:[]
       myBlogs.map((blog)=>{
         return(
           <>
-          <div className='bg-[#705721] text-[#FFFEF2] p-4 rounded-xl mb-[1em] min-w-[16em]'>
           <Link href={"blogs/" + connectedTitleUrl(blog.title, blog.id)}>
+          <div className='bg-[#705721] text-[#FFFEF2] p-4 rounded-xl mb-[1em] min-w-[16em]'>
+
             <div className={cls(montserrat.className,'bg-brown-500 text-slate-300 uppercase text-center text-xl font-extrabold')}>
               {blog.title}
             </div>
+            <div className={cls(alegreya.className,'text-[#ddddda]') }>
 
-            <div className={cls(alegreya.className, 'text-[#ddddda] text-sm p-2')}>
+            <div className={'text-[#ddddda] text-sm p-2'}>
               {blog.subtitle}
             </div>
                 
-            <div className={cls(alegreya.className, 'text-[#ddddda] font-bold text-base p-1 min-w-[3em]')}>
+            <div className={ ' font-bold text-base p-1 min-w-[3em]'}>
               {blog.author}
             </div>
             
-            <div className={cls(alegreya.className, 'text-[#ddddda] font-bold text-base p-1 min-w-[3em]')}>
+            <div className={ ' font-bold text-base p-1 min-w-[3em]'}>
               {blog.date}
             </div>
+            </div>
+          </div>
           </Link>
 
 
-          </div>
           </>
         )
       })
