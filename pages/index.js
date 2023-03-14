@@ -10,8 +10,6 @@ const alegreya = Alegreya({ subsets: ['latin'] })
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 
-
-
 export default function Home() {
 
   const myBlogs = 
@@ -21,24 +19,45 @@ post: 'Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit eni
 author:'Jamesbo',
 date: '12/28/9999',
 subtitle: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-url:"/blog-1"
+url:"/blog-1",
+id:1,
+tags:[],
+comments:[]
 },
 {title: 'Nobody knows my sorrow',
 post: 'Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.' ,
 author:'Jamesyboy',
 date: '12/28/9199',
 subtitle: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-url:"/blog-2"
+url:"/blog-2",
+id:2,
+tags:["happiness", "truth"],
+comments:[
+  {
+    commenter:'',
+    comment:'You are the MAN!!',
+    date:'12/29/9999',
+  }
+]
 },
 {title: 'Winsome Ways of Women',
 post: 'Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.' ,
 author:'Notthisguy',
 date: '12/28/9199',
 subtitle: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-url:"/blog-3"
+url:"/blog-3",
+id:3,
+tags:[],
+comments:[]
 }
   ]
 
+  const connectedTitleUrl = (title, id)=>{
+      return title.split(' ').join('_') + "-" + id
+        
+      }
+      
+  
 
 
   return (
@@ -63,17 +82,14 @@ url:"/blog-3"
         return(
           <>
           <div className='bg-[#705721] text-[#FFFEF2] p-4 rounded-xl mb-[1em] min-w-[16em]'>
-
+          <Link href={"blogs/" + connectedTitleUrl(blog.title,"_",blog.id)}>
             <div className={cls(montserrat.className,'bg-brown-500 text-slate-300 uppercase text-center text-xl font-extrabold')}>
-            
               {blog.title}
             </div>
 
             <div className={cls(alegreya.className, 'text-[#ddddda] text-sm p-2')}>
               {blog.subtitle}
             </div>
-  
-            <div className={cls(alegreya.className, 'text-[#ddddda] text-sm p-2 flex flex-row flex-wrap justify-evenly')}>
                 
             <div className={cls(alegreya.className, 'text-[#ddddda] font-bold text-base p-1 min-w-[3em]')}>
               {blog.author}
@@ -82,7 +98,7 @@ url:"/blog-3"
             <div className={cls(alegreya.className, 'text-[#ddddda] font-bold text-base p-1 min-w-[3em]')}>
               {blog.date}
             </div>
-            </div>
+          </Link>
 
 
           </div>
