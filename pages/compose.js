@@ -3,7 +3,7 @@ import React from 'react'
 const Compose = () => {
   return (
     <>
-      <h2>Placeholder3</h2>
+      <h2>Placeholder3 JUST A QUICK TEST</h2>
     </>
   )
 }
