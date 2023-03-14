@@ -1,6 +1,9 @@
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import "react-quill/dist/quill.snow.css";
+import { Post } from '@/lib/objectDefs';
+
+// title,post,author,date,subtitle,url,idNum,tagsArr,commentsArr
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
   ssr: false,
