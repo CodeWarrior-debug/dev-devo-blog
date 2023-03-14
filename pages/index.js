@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { Alegreya, Monsieur_La_Doulaise, Montserrat} from 'next/font/google'
 import cls from "classnames"
+import Header from '@/components/Header'
 
 // TODO change font
 
@@ -49,7 +50,8 @@ url:"/blog-3"
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main >
-        <div className='text-black grid place-items-center min-h-screen bg-blue-800 p-[2em] '>
+        <Header/>
+        <div className='text-black grid place-items-center min-h-screen bg-[#0C3BAA] p-[2em] '>
           {/* TODO find exact blue and cream colors (maybe cream gradient?) desired) */}
         
 
@@ -60,10 +62,10 @@ url:"/blog-3"
       myBlogs.map((blog)=>{
         return(
           <>
-          <div className='bg-[#705721] text-[#FFFEF2] p-4 rounded-xl mb-[1em]'>
+          <div className='bg-[#705721] text-[#FFFEF2] p-4 rounded-xl mb-[1em] min-w-[16em]'>
 
             <div className={cls(montserrat.className,'bg-brown-500 text-slate-300 uppercase text-center text-xl font-extrabold')}>
-            {/* <div className={cls(montserrat.className,'bg-brown-500  uppercase text-center text-4xl font-extrabold')}> */}
+            
               {blog.title}
             </div>
 
