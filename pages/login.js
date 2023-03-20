@@ -1,5 +1,5 @@
 import React from 'react'
-import { nameState } from '@/components/States'
+import { nameState } from '@/recoil/States'
 import { useRecoilValue } from 'recoil'
 
 const Login = () => {

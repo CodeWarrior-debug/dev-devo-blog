@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRecoilState,useRecoilValue } from 'recoil'
-import { nameState, charState} from './States'
+import { nameState, charState} from '../recoil/States'
 
 const Input = () => {
 

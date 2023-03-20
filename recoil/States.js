@@ -2,12 +2,12 @@ const {atom, selector} = require("recoil")
 
 
 
-    const nameState = atom({
+    export const nameState = atom({
         key: 'nameState',
-        default: ''
+        default: 'homebody'
     })
     
-    const charState= selector({
+export const charState= selector({
         key: 'charState',
         get:({get})=>{
             const name = get(nameState);
@@ -15,7 +15,7 @@ const {atom, selector} = require("recoil")
         }
     })
 
-export {nameState, charState}
+
 
 
 

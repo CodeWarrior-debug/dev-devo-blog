@@ -3,7 +3,8 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { Post } from "@/lib/objectDefs";
-
+import { useRecoilState, useRecoilValue } from "recoil";
+import { nameState } from "@/recoil/States";
 // title,post,author,date,subtitle,url,idNum,tagsArr,commentsArr
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
@@ -12,40 +13,41 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
 });
 
 export default function Home() {
+  const postName = useRecoilValue(nameState)
+  const [postTitle, setPostTitle]=useRecoilState(nameState)
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [isDraft, setIsDraft] = useState(true);
-  const [isPublished, setIsPublished] = useState(false);
 
   // TOOD handle backend...
 
-  function submitHandler(event) {
-    event.preventDefault();
+  // function submitHandler(event) {
+  //   event.preventDefault();
 
-    const requestObj = {
-      id: new Date().toISOString(),
-      title: title,
-      content: content,
-      isDraft: isDraft,
-      isPublished: isPublished,
-    };
+  //   const requestObj = {
+  //     id: new Date().toISOString(),
+  //     title: title,
+  //     content: content,
+  //     isDraft: isDraft,
+  //     isPublished: isPublished,
+  //   };
 
-    fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify(requestObj),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
-  }
+  //   fetch("/api/posts", {
+  //     method: "POST",
+  //     body: JSON.stringify(requestObj),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //     });
+  // }
 
   function handleTitleChange(event) {
     event.preventDefault();
     setTitle(event.target.value);
+    setPostTitle(event.target.value);
   }
 
   const modules = {
@@ -71,11 +73,13 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="text-black flex flex-col justify-start items-center  bg-[#0C3BAA] p-[1em] w-full">
+      <div className="text-black flex flex-col justify-start items-center min-h-screen bg-[#0C3BAA] p-[1em] w-full">
         {/* TODO find exact blue and cream colors (maybe cream gradient?) desired) */}
 
+        <p className="mb-4 text-2xl font-extrabold text-white uppercase">{postName}</p>
 
-        <form onSubmit={submitHandler} className="min-w-[16em] w-4/5 border-none ">
+        {/* <form onSubmit={submitHandler} className="min-w-[16em] w-4/5 border-none "> */}
+        <form className="min-w-[16em] w-4/5 border-none ">
           {/* <label htmlFor="title">Title</label> */}
           <div className="bg-white h-[70vh]">
             <input
@@ -85,7 +89,6 @@ export default function Home() {
               placeholder="Enter a title"
               onChange={handleTitleChange}
               required
-              
             />
 
           <div className="bg-white ">
