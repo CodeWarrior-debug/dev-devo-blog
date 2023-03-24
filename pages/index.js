@@ -4,6 +4,7 @@ import Card from "@/components/Card";
 import Button from "react-bootstrap/Button"
 import Navbar from "@/components/Navbar"
 import Heading from "@/components/Heading";
+import PostPreviews from "@/components/PostPreviews";
 
 // TODO change font
 
@@ -70,6 +71,7 @@ export default function Home() {
 
       <Navbar/>
       <Heading/>
+      <PostPreviews/>
 
 
       {/* <!-- Navigation--> */}
