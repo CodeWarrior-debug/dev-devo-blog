@@ -1,10 +1,9 @@
 import Link from "next/link";
 import Head from "next/head";
-import Header from "@/components/Header";
 import Card from "@/components/Card";
 import Button from "react-bootstrap/Button"
 import Navbar from "@/components/Navbar"
-
+import Heading from "@/components/Heading";
 
 // TODO change font
 
@@ -67,9 +66,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <main className="bg-dark min-vh-100"> */}
-      <main>
+      
 
       <Navbar/>
+      <Heading/>
+
+
       {/* <!-- Navigation--> */}
 
     
@@ -80,24 +82,6 @@ export default function Home() {
     {/* <div  >
 
     
-        <nav className="navbar navbar-expand-lg navbar-light " id="mainNav">
-            <div className="container px-4 px-lg-5">
-                <a className="p-2 navbar-brand bg-primary text-light" href="index.html">Start Bootstrap</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i className="fas fa-bars"></i>
-                </button>
-                <div className="collapse navbar-collapse " id="navbarResponsive">
-                    <ul className="py-4 navbar-nav ms-auto py-lg-0 ">
-                        <li className="nav-item"><a className="py-3 nav-link px-lg-3 text-light py-lg-4" href="index.html">Home</a></li>
-                        <li className="nav-item"><a className="py-3 nav-link px-lg-3 text-light py-lg-4" href="about.html">About</a></li>
-                        <li className="nav-item"><a className="py-3 nav-link px-lg-3 text-light py-lg-4" href="post.html">Sample Post</a></li>
-                        <li className="nav-item"><a className="py-3 nav-link px-lg-3 text-light py-lg-4" href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        </div> */}
         
 
 
@@ -116,7 +100,7 @@ export default function Home() {
             {/* {myBlogs.map((blog) => { return ( <Card key={blog.id} title={blog.title} subtitle={blog.subtitle} author={blog.author} date={blog.date} id={blog.id} url={blog.url} /> ); })} */}
           {/* </div> */}
         {/* </div> */}
-      </main>
+      
     </>
   );
 }
