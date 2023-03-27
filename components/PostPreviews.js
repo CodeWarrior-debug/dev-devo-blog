@@ -26,7 +26,7 @@ const PostPreviews = () => {
   ];
 
   useEffect(() => {
-    console.log(demoPosts);
+    // console.log(demoPosts);
   }, []);
 
   return (

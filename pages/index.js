@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Link from "next/link";
 import Head from "next/head";
 import Card from "@/components/Card";
@@ -72,7 +73,7 @@ export default function Home() {
       <Navbar/>
       <Heading/>
       <PostPreviews/>
-
+<Footer/>
 
       {/* <!-- Navigation--> */}
 
