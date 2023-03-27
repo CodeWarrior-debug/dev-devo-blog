@@ -1,16 +1,30 @@
 import React, { useEffect } from "react";
 
 
-const title= "The best topics";
-const post= "You know what they are! God and good books!";
-const author= "James";
-const createddateTime= "99/99/12 02=02";
-const updateddateTime= new Date();
-const   subtitle= "You can't wait to hear just how good these topics are...";
-const url= "/the_best_topics_2";
-const idNum= 2;
-const tagsArr= ["theology", "literature"];
-const commentsArr= ["great God almighty", "i hate emerson"];
+
+// https://medium.com/meta-box/how-to-send-get-and-post-requests-with-javascript-fetch-api-d0685b7ee6ed
+const params = {
+  title: "The best topics",
+  post: "You know what they are! God and good books!",
+  author: "James",
+  createddateTime: new Date(),
+  updateddateTime: new Date(),
+  subtitle: "You can't wait to hear just how good these topics are...",
+  idNum: 1,
+  tagsArr: ["theology", "literature"],
+  commentsArr: ["great God almighty", "i hate emerson"],
+}
+
+const options = {
+  method: "POST",
+  body: JSON.stringify(params),
+  headers:{
+    'Content-Type':'application/json'
+  }
+}
+
+
+
 
 
 const TestPageAPI = () => {
@@ -21,7 +35,7 @@ const TestPageAPI = () => {
 
   
   const getData = async ()=>{
-     const response = await fetch('api/createPost')
+     const response = await fetch('api/createPost', options)
      const data = await response.json()
      console.log(data)
   }

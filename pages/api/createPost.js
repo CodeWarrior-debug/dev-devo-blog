@@ -1,27 +1,70 @@
-// import React, { useEffect } from "react";
-// Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
+
 // import { getCountFromServer,getDocs,getDoc,getFirestore ,collection, addDoc,doc, setDoc, Timestamp, updateDoc, arrayUnion, arrayRemove, increment, deleteDoc} from "firebase/firestore";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc} from "firebase/firestore";
+import {db} from "../../lib/firesStoreRef"
+import slugify from "slugify";
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import {db} from "../../lib/firesStoreRef"
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBXjSO1dKSAjVYVmcNURaRdpPueZRXoTdU",
-//   authDomain: "dev-blog-b9b09.firebaseapp.com",
-//   projectId: "dev-blog-b9b09",
-//   storageBucket: "dev-blog-b9b09.appspot.com",
-//   messagingSenderId: "452713926371",
-//   appId: "1:452713926371:web:67a68e3b801903c133bfd6",
-//   measurementId: "G-KBC14G3NMK",
-// };
-  
-// const app = initializeApp(firebaseConfig);
-// const db = getFirestore(app);
+
 
 
 export default function handler(req,res){
+  
+  if (req.method ===`POST`){
+    
+    try{
+    const title = req.body.title;
+    const post= req.body.post ;
+    const author= req.body.author;
+    const createddateTime= req.body.createddateTime;
+    const updateddateTime= req.body.updateddateTime;
+    const subtitle= req.body.subtitle;
+    const url= slugify(req.body.title).toLowerCase();
+    const idNum= req.body.idNum;
+    const tagsArr= req.body.tagsArr;
+    const commentsArr= req.body.commentsArr;
+
+    
+
+    const newPost = {
+      'title':title,
+      'post':post ,
+      'author': author,
+      'createddateTime': createddateTime,
+      'updateddateTime': updateddateTime,
+      'subtitle':subtitle,
+      'url': url + "-" +idNum ,
+      'idNum': idNum,
+      'tagsArr': tagsArr,
+      'commentsArr': commentsArr,
+    }
+
+      const addPost = async () => {
+        
+        let myString = idNum.toString();
+        
+        await setDoc(doc(db, "posts", myString), 
+        newPost
+
+        );
+    
+    
+        // await addDoc(doc(db,"posts",2),{
+        //   title, post, author, createddateTime, updateddateTime, subtitle, url, idNum, tagsArr, commentsArr
+        // })
+    
+        
+      };
+    
+      
+        addPost();
+    } catch(err){
+      console.log(err)
+    }
+  }
+
+  
   
   // import { Post} from "./objectDefs"
   
@@ -31,44 +74,11 @@ export default function handler(req,res){
   
   // Your web app's Firebase configuration For Firebase JS SDK v7.20.0 and later, measurementId is optional
   
-  try{
-    const addPost = async () => {
-      // constructor(title,post,author,createddateTime, updateddateTime,subtitle,url,idNum,tagsArr,commentsArr){
-
-         
-      await setDoc(doc(db, "posts","4"), {
-        title: req.params.title,
-        post: req.params.post
-        // author: "James",
-        // createddateTime: "99/99/12 02:02",
-        // updateddateTime: new Date(),
-        // subtitle: "You can't wait to hear just how good these topics are...",
-        // url: "/the_best_topics_2",
-        // idNum: 2,
-        // tagsArr: ["theology", "literature"],
-        // commentsArr: ["great God almighty", "i hate emerson"],
-      });
-  
-  
-  
-  
-      // await addDoc(doc(db,"posts",2),{
-      //   title, post, author, createddateTime, updateddateTime, subtitle, url, idNum, tagsArr, commentsArr
-      // })
-  
-      
-    };
-  
-    
-      addPost();
-  } catch(err){
-    console.log(err)
-  }
   
 
     
     
-    res.status(200).json("title through",req.params.title)
+    res.status(200).json("done")
 
       
   
