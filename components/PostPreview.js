@@ -5,6 +5,7 @@ const PostPreview = (props) => {
     const {title, subtitle,slug, author} = props;
   return (
     <>
+                                        {/* Divider */}
                           <div class="post-preview">
                         <Link href={slug} className="text-decoration-none text-dark">
                             <h2 class="post-title text-decoration-none">{title}</h2>
