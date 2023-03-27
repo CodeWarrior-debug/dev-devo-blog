@@ -5,7 +5,7 @@ const Heading = () => {
     <>
     
 
-      <header className="masthead " style={{backgroundImage: `url('/globe-networked.png')`, height:"600px", backgroundSize:'contain', backgroundRepeat:'no-repeat'}}>
+      <header className="masthead " style={{backgroundImage: `url('/globe-networked.png')`, height:"600px", backgroundSize:'cover', backgroundRepeat:'no-repeat'}}>
             <div className="container position-relative px-lg-5 " >
                 <div className="row gx-4 gx-lg-5 ">
                     <div className="col-md-10 col-lg-8 col-xl-7 ">

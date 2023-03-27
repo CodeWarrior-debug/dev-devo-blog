@@ -49,7 +49,7 @@ const PostPreviews = () => {
             {/* Pager */}
             <div className="d-flex justify-content-end mb-4">
               <Link className="btn btn-primary text-uppercase" href="#!">
-                Older Posts →
+                All Posts →
               </Link>
             </div>
           </div>
