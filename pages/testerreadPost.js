@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 const TestPageAPI = () => {
   const [post, setPost] = useState("");
 
-  const number = 2;
+  const number = 1;
 
   // const coll = collection(db, "cities");
   // const snapshot = await getCountFromServer(coll);

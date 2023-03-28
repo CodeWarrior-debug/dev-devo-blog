@@ -6,12 +6,12 @@ const PostPreview = (props) => {
   return (
     <>
                                         {/* Divider */}
-                          <div class="post-preview">
+                          <div className="post-preview">
                         <Link href={slug} className="text-decoration-none text-dark text-break">
-                            <h2 class="post-title text-decoration-none text-center text-wrap text-break mb-4">{title}</h2>
-                            <h5 class="post-subtitle text-center fw-light text-wrap text-break mb-2">{subtitle}</h5>
+                            <h2 className="post-title text-decoration-none text-center text-wrap text-break mb-4">{title}</h2>
+                            <h5 className="post-subtitle text-center fw-light text-wrap text-break mb-2">{subtitle}</h5>
                         </Link>
-                        <p class="post-meta text-wrap text-break text-center">
+                        <p className="post-meta text-wrap text-break text-center">
                             Posted by &nbsp;
                             <Link href={slug}>{author}</Link>
                             &nbsp; on September 24, 2022

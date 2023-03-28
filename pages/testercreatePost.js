@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 // https://medium.com/meta-box/how-to-send-get-and-post-requests-with-javascript-fetch-api-d0685b7ee6ed
 const params = {
   title: "The best topics",
-  post: "You know what they are! God and good books!",
+  postBody: "You know what they are! God and good books!",
   author: "James",
   createddateTime: new Date(),
   updateddateTime: new Date(),

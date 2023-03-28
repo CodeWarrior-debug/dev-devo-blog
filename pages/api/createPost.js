@@ -9,7 +9,7 @@ export default function handler(req, res) {
 
   try {
     const title = req.body.title;
-    const post = req.body.post;
+    const postBody = req.body.postBody;
     const author = req.body.author;
     const createddateTime = req.body.createddateTime;
     const updateddateTime = req.body.updateddateTime;
@@ -21,7 +21,7 @@ export default function handler(req, res) {
 
     const newPost = {
       title: title,
-      post: post,
+      postBody: postBody,
       author: author,
       createddateTime: createddateTime,
       updateddateTime: updateddateTime,

@@ -1,17 +1,15 @@
 const {atom, selector} = require("recoil")
 
-
-
-    export const nameState = atom({
-        key: 'nameState',
-        default: 'homebody'
+    export const userName = atom({
+        key: 'userName',
+        default: ''
     })
     
-export const charState= selector({
-        key: 'charState',
+export const isLoggedIn= selector({
+        key: 'isLoggedIn',
         get:({get})=>{
-            const name = get(nameState);
-            return name.length
+            const name = get(userName);
+            return name.length > 0
         }
     })
 
