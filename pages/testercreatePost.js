@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 
-
-
 // https://medium.com/meta-box/how-to-send-get-and-post-requests-with-javascript-fetch-api-d0685b7ee6ed
 const params = {
   title: "The best topics",
@@ -13,40 +11,36 @@ const params = {
   idNum: 1,
   tagsArr: ["theology", "literature"],
   commentsArr: ["great God almighty", "i hate emerson"],
-}
+};
 
 const options = {
   method: "POST",
   body: JSON.stringify(params),
-  headers:{
-    'Content-Type':'application/json'
-  }
-}
-
-
-
-
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
 
 const TestPageAPI = () => {
   // const coll = collection(db, "cities");
   // const snapshot = await getCountFromServer(coll);
   // console.log('count: ', snapshot.data().count);
 
+  const getData = async () => {
+    const response = await fetch("api/createPost", options);
+    const data = await response.json();
+    console.log(data);
+  };
 
-  
-  const getData = async ()=>{
-     const response = await fetch('api/createPost', options)
-     const data = await response.json()
-     console.log(data)
-  }
-  
   useEffect(() => {
-    getData()
+    getData();
   }, []);
 
-  return <>
-  <p>tryin out...</p>
-  </>;
+  return (
+    <>
+      <p>tryin out...</p>
+    </>
+  );
 };
 
 export default TestPageAPI;
