@@ -12,9 +12,7 @@ const TestPageAPI = () => {
   const [post, setPost] = useState('');
   const sampleValue = 1;
   
-  const params = {
-    ""
-  }
+
 
   // const coll = collection(db, "cities");
   // const snapshot = await getCountFromServer(coll);
