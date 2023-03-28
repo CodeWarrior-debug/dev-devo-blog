@@ -21,7 +21,7 @@ export default function handler(req, res) {
 
       
       res.status(200).json(allDocs)
-      res.end()
+      
 
 
       // console.log("alldocs: ",allDocs)
@@ -31,7 +31,7 @@ export default function handler(req, res) {
 
   } catch (err) {
     res.json(err)
-    res.status(405).end();
+    
     
   }
 }

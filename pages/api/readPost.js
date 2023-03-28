@@ -9,7 +9,10 @@ export default function handler(req, res) {
 
     const getPost = async () => {
       // TODO - make dynamic
-      const docRef = doc(db, "posts", "1");
+      
+      console.log("desired value: ", req.headers.custompostindex)
+
+      const docRef = doc(db, "posts", req.headers.custompostindex.toString());
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         res.status(200).json(docSnap.data());
