@@ -161,7 +161,7 @@ export default function Compose() {
           {/* author */}
           <p>Created: {createddateTime}, Updated: {updateddateTime}</p>
           
-          <p>URL Slug: {slugify(title)}-{idNum}</p>
+          <p>URL Slug: {slugify(title.toLowerCase())}-{idNum}</p>
           {/* <p>Tags: {tagsArr}</p> */}
           
           {/* <p>Comments: {commentsArr}</p> */}
