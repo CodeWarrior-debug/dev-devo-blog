@@ -22,7 +22,7 @@ export default function Home() {
 useEffect(()=>{
   
   const getFBDocs = async ()=>{
-    const res = await fetch("../api/readPosts")
+    const res = await fetch("./api/readPosts")
     const data = await res.json()
 
     setBlogs(data)
@@ -95,7 +95,7 @@ useEffect(()=>{
 
       <Navbar/>
       <Heading/>
-      <PostPreviews blogs={blogs} />
+      <PostPreviews allBlogs={blogs} />
 <Footer/>
 
       {/* <!-- Navigation--> */}
