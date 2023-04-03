@@ -6,56 +6,79 @@ import Button from "react-bootstrap/Button"
 import Navbar from "@/components/Navbar"
 import Heading from "@/components/Heading";
 import PostPreviews from "@/components/PostPreviews";
+import {useEffect,useState} from "react";
+// import { db } from "@/lib/firesStoreRef";
+// import {collection, getDocs} from "firebase/firestore"
+
+
+
 
 // TODO change font
 
 export default function Home() {
+  const [blogs,setBlogs]=useState([])
+
+
+useEffect(()=>{
   
+  const getFBDocs = async ()=>{
+    const res = await fetch("../api/readPosts")
+    const data = await res.json()
+
+    setBlogs(data)
+  }
   
-  const myBlogs = [
-    {
-      title: "testTitle",
-      post: "Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
-      author: "Jamesbo",
-      date: "12/28/9999",
-      subtitle:
-        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-      url: "/something_in_the_way-1",
-      id: 1,
-      tags: [],
-      comments: [],
-    },
-    {
-      title: "Nobody knows my sorrow",
-      post: "Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
-      author: "Jamesyboy",
-      date: "12/28/9199",
-      subtitle:
-        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-      url: "/nobody_knows_my_sorrow-2",
-      id: 2,
-      tags: ["happiness", "truth"],
-      comments: [
-        {
-          commenter: "",
-          comment: "You are the MAN!!",
-          date: "12/29/9999",
-        },
-      ],
-    },
-    {
-      title: "Winsome Ways of Women",
-      post: "Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
-      author: "Notthisguy",
-      date: "12/28/9199",
-      subtitle:
-        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-      url: "/winsome_ways_of_women_3",
-      idNum: 3,
-      tags: [],
-      comments: [],
-    },
-  ];
+  getFBDocs()
+  
+  console.log("blogs", blogs)
+
+},[])
+
+  
+  // const myBlogs = [
+  //   {
+  //     title: "testTitle",
+  //     post: "Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
+  //     author: "Jamesbo",
+  //     date: "12/28/9999",
+  //     subtitle:
+  //       "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+  //     url: "/something_in_the_way-1",
+  //     id: 1,
+  //     tags: [],
+  //     comments: [],
+  //   },
+  //   {
+  //     title: "Nobody knows my sorrow",
+  //     post: "Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
+  //     author: "Jamesyboy",
+  //     date: "12/28/9199",
+  //     subtitle:
+  //       "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+  //     url: "/nobody_knows_my_sorrow-2",
+  //     id: 2,
+  //     tags: ["happiness", "truth"],
+  //     comments: [
+  //       {
+  //         commenter: "",
+  //         comment: "You are the MAN!!",
+  //         date: "12/29/9999",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Winsome Ways of Women",
+  //     post: "Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
+  //     author: "Notthisguy",
+  //     date: "12/28/9199",
+  //     subtitle:
+  //       "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+  //     url: "/winsome_ways_of_women_3",
+  //     idNum: 3,
+  //     tags: [],
+  //     comments: [],
+  //   },
+  // ];
 
  
 
@@ -72,7 +95,7 @@ export default function Home() {
 
       <Navbar/>
       <Heading/>
-      <PostPreviews/>
+      <PostPreviews blogs={blogs} />
 <Footer/>
 
       {/* <!-- Navigation--> */}

@@ -121,6 +121,8 @@ export default function Compose() {
               className="mr-4"
             />
             <span className="pl-4 " >{title}</span>
+            <br/>
+            <br/>
           <div className="bg-white ">
             <QuillNoSSRWrapper
               modules={modules}
@@ -158,7 +160,6 @@ export default function Compose() {
           <p>Title: {title}</p>
           <p>Subtitle: {subtitle}</p>
           <p>By: {author}</p>
-          {/* author */}
           <p>Created: {createddateTime}, Updated: {updateddateTime}</p>
           
           <p>URL Slug: {slugify(title.toLowerCase())}-{idNum}</p>

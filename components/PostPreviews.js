@@ -1,9 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import Link from "next/link";
 import slugify from "slugify";
 import PostPreview from "./PostPreview";
 
-const PostPreviews = () => {
+const PostPreviews = (props) => {
+// const [demoPosts,setDemoPosts] = useState([])
+
+  
+  
   const demoPosts = [
     {
       title: "Man must explore, and this is exploration at its greatest",
@@ -26,7 +30,9 @@ const PostPreviews = () => {
   ];
 
   useEffect(() => {
-    // console.log(demoPosts);
+    
+// console.log(props)
+    
   }, []);
 
   return (
@@ -34,7 +40,7 @@ const PostPreviews = () => {
       <div className="container px-4 px-lg-5 mt-4">
         <div className="row gx-4 gx-lg-5 justify-content-center">
           <div className="col-md-10 col-lg-8 col-xl-7">
-            {demoPosts.map((item, index) => {
+            {/* {blogs.map((item, index) => {
               return (
                 <PostPreview
                   key={index}
@@ -44,7 +50,7 @@ const PostPreviews = () => {
                   author={item.author}
                 />
               );
-            })}
+            })} */}
 
             {/* Pager */}
             <div className="d-flex justify-content-end mb-4">
