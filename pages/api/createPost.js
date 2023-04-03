@@ -6,18 +6,18 @@ import slugify from "slugify";
 
 export default function handler(req, res) {
   
-
+  
   try {
     const title = req.body.title;
     const postBody = req.body.postBody;
     const author = req.body.author;
+    const subtitle = req.body.subtitle;
     const createddateTime = req.body.createddateTime;
     const updateddateTime = req.body.updateddateTime;
-    const subtitle = req.body.subtitle;
     const url = slugify(req.body.title).toLowerCase();
     const idNum = req.body.idNum;
-    const tagsArr = req.body.tagsArr;
-    const commentsArr = req.body.commentsArr;
+    // const tagsArr = req.body.tagsArr;
+    // const commentsArr = req.body.commentsArr;
 
     const newPost = {
       title: title,
@@ -28,14 +28,14 @@ export default function handler(req, res) {
       subtitle: subtitle,
       url: url + "-" + idNum,
       idNum: idNum,
-      tagsArr: tagsArr,
-      commentsArr: commentsArr,
+      // tagsArr: tagsArr,
+      // commentsArr: commentsArr,
     };
 
     const addPost = async () => {
-      let myString = idNum.toString();
+      
 
-      await setDoc(doc(db, "posts", myString), newPost);
+      await setDoc(doc(db, "posts", idNum.toString()), newPost);
 
 
     };

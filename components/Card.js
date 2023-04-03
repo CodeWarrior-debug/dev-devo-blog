@@ -2,8 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { Alegreya,  Montserrat} from 'next/font/google'
 import cls from "classnames"
-import { useRecoilValue } from "recoil";
-import { nameState } from "@/recoil/States";
 
 
 const alegreya = Alegreya({ subsets: ["latin"] });
@@ -11,7 +9,6 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 
 const Card = (props) => {
 
-  const testName = useRecoilValue(nameState)
   
   const connectedTitleUrl = (title, id) => {
     return title.split(" ").join("_") + "-" + id;
@@ -27,7 +24,6 @@ const Card = (props) => {
               "bg-brown-500 text-slate-300 uppercase text-center text-xl font-extrabold"
             )}
           >
-            {testName}
           </div>
           <div className={cls(alegreya.className, "text-[#ddddda]")}>
             <div className={"text-[#ddddda] text-sm p-2"}>{props.subtitle}</div>

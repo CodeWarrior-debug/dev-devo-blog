@@ -1,10 +1,14 @@
-import Header from "@/components/Header_old";
+import slugify from "slugify";
+import Link from "next/link";
+// import Header from "@/components/Head";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import { Post } from "@/lib/objectDefs";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { nameState } from "@/recoil/States";
+import { useEffect } from "react";
+import { db } from "@/lib/firesStoreRef";
+import { getCountFromServer, collection } from "firebase/firestore";
+
+
 // title,post,author,date,subtitle,url,idNum,tagsArr,commentsArr
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
@@ -12,42 +16,60 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   loading: () => <p>Loading ...</p>,
 });
 
-export default function Home() {
-  const postName = useRecoilValue(nameState)
-  const [postTitle, setPostTitle]=useRecoilState(nameState)
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+export default function Compose() {
 
-  // TOOD handle backend...
+  useEffect(()=>{
+    
+    const nextDocNumber = async () =>{
 
-  // function submitHandler(event) {
-  //   event.preventDefault();
+      const dateTime = new Date()
+      const dateTimeString = dateTime.toLocaleDateString("en-US")
 
-  //   const requestObj = {
-  //     id: new Date().toISOString(),
-  //     title: title,
-  //     content: content,
-  //     isDraft: isDraft,
-  //     isPublished: isPublished,
-  //   };
+      const coll = collection(db,"posts")
+      const snapshot = await getCountFromServer(coll)
+      setIdNum(snapshot.data().count +1)
+      setUpdatedDateTime(dateTimeString)
+      setCreatedDateTime(dateTimeString)
 
-  //   fetch("/api/posts", {
-  //     method: "POST",
-  //     body: JSON.stringify(requestObj),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     });
-  // }
+    }
+
+    nextDocNumber()
+    
+  })
+  // states 
+    const [title, setTitle] = useState("");
+    const [idNum,setIdNum]=useState("")
+    const [content, setContent] = useState("");
+    const [author, setAuthor] = useState("ANONYMOUS")
+    const [subtitle, setSubtitle] =useState("")
+    const [createddateTime, setCreatedDateTime]=useState("")
+    const [updateddateTime,setUpdatedDateTime]=useState("")
+    // const [url,setUrl]=useState("")
+    // const [tagsArr,setTagsArr]=useState("")
+    
+    const params = {
+      title:title,
+      idNum:idNum,
+      postBody:content,
+      author:author,
+      subtitle:subtitle,
+      createddateTime:createddateTime,
+      updateddateTime:updateddateTime,
+      // url:url - added downstream
+
+    }
+
+    const options = {
+      method: "POST",
+      body: JSON.stringify(params),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
 
   function handleTitleChange(event) {
     event.preventDefault();
     setTitle(event.target.value);
-    setPostTitle(event.target.value);
   }
 
   const modules = {
@@ -70,13 +92,20 @@ export default function Home() {
     },
   };
 
+  const makeQuery = async () => {
+    const response = await fetch("api/createPost", options);
+    const data = await response.json();
+    console.log(data);
+  };
+
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+      <div className="container">
+
       <div className="text-black flex flex-col justify-start items-center min-h-screen bg-[#0C3BAA] p-[1em] w-full">
         {/* TODO find exact blue and cream colors (maybe cream gradient?) desired) */}
 
-        <p className="mb-4 text-2xl font-extrabold text-white uppercase">{postName}</p>
 
         {/* <form onSubmit={submitHandler} className="min-w-[16em] w-4/5 border-none "> */}
         <form className="min-w-[16em] w-4/5 border-none ">
@@ -89,8 +118,9 @@ export default function Home() {
               placeholder="Enter a title"
               onChange={handleTitleChange}
               required
+              className="mr-4"
             />
-
+            <span className="pl-4 " >{title}</span>
           <div className="bg-white ">
             <QuillNoSSRWrapper
               modules={modules}
@@ -105,9 +135,41 @@ export default function Home() {
           
         </form>
 
-          <button className="p-2 m-4 font-bold text-white bg-blue-600 rounded-lg ">Save</button>
+
+  <button className="p-2 m-4 fw-bold bg-blue-600 rounded " onClick={makeQuery}>Submit</button>
+  :
+  <button href="/login" className="">
+    <Link href="/login">LOGIN TO POST AS YOURSELF</Link>
+    </button>
+
+
+{/* Temporary */}
+          {/* <button className="p-2 m-4 fw-bold bg-blue-600 rounded ">Submit</button> */}
       </div>
-          <p>{content}</p>
+      </div>
+        <div className="container">
+
+        <details  closed> 
+      <summary className="fw-bold"> SHOW HTML VALUES FOR DATABASE</summary>
+
+
+          <p>Body: {content}</p>
+          
+          <p>Title: {title}</p>
+          <p>Subtitle: {subtitle}</p>
+          <p>By: {author}</p>
+          {/* author */}
+          <p>Created: {createddateTime}, Updated: {updateddateTime}</p>
+          
+          <p>URL Slug: {slugify(title)}-{idNum}</p>
+          {/* <p>Tags: {tagsArr}</p> */}
+          
+          {/* <p>Comments: {commentsArr}</p> */}
+
+
+        </details>
+        </div>
+
     </>
   );
 }
