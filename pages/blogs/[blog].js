@@ -7,7 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import { useEffect } from "react";
 import { db } from "@/lib/firesStoreRef";
 import { getCountFromServer, collection } from "firebase/firestore";
-
+import {useRouter} from "next/router"
 
 // title,post,author,date,subtitle,url,idNum,tagsArr,commentsArr
 
@@ -16,56 +16,61 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   loading: () => <p>Loading ...</p>,
 });
 
-export default function Compose() {
+export default function Blog() {
+
+      // states 
+      const [title, setTitle] = useState("");
+      const [idNum,setIdNum]=useState("")
+      const [content, setContent] = useState("");
+      const [author, setAuthor] = useState("ANONYMOUS")
+      const [subtitle, setSubtitle] =useState("")
+      const [createddateTime, setCreatedDateTime]=useState("")
+      const [updateddateTime,setUpdatedDateTime]=useState("")
+
+    const number = 1;
+    const router = useRouter()
+  
+    const getData = async () => {
+      const response = await fetch("../api/readPost", {
+        headers: {
+          customPostIndex: router.query.blog,
+        
+        },
+      });
+      const data = await response.json();
+    //   setPost(data);
+      console.log(data)
+      setTitle(data.title)
+    };
 
   useEffect(()=>{
+    getData();
     
-    const nextDocNumber = async () =>{
-
-      const dateTime = new Date()
-      const dateTimeString = dateTime.toLocaleDateString("en-US")
-
-      const coll = collection(db,"posts")
-      const snapshot = await getCountFromServer(coll)
-      setIdNum(snapshot.data().count +1)
-      setUpdatedDateTime(dateTimeString)
-      setCreatedDateTime(dateTimeString)
-
-    }
-
-    nextDocNumber()
     
   })
-  // states 
-    const [title, setTitle] = useState("");
-    const [idNum,setIdNum]=useState("")
-    const [content, setContent] = useState("");
-    const [author, setAuthor] = useState("ANONYMOUS")
-    const [subtitle, setSubtitle] =useState("")
-    const [createddateTime, setCreatedDateTime]=useState("")
-    const [updateddateTime,setUpdatedDateTime]=useState("")
+
     // const [url,setUrl]=useState("")
     // const [tagsArr,setTagsArr]=useState("")
     
-    const params = {
-      title:title,
-      idNum:idNum,
-      postBody:content,
-      author:author,
-      subtitle:subtitle,
-      createddateTime:createddateTime,
-      updateddateTime:updateddateTime,
-      // url:url - added downstream
+    // const params = {
+    //   title:title,
+    //   idNum:idNum,
+    //   postBody:content,
+    //   author:author,
+    //   subtitle:subtitle,
+    //   createddateTime:createddateTime,
+    //   updateddateTime:updateddateTime,
+    //   // url:url - added downstream
 
-    }
+    // }
 
-    const options = {
-      method: "POST",
-      body: JSON.stringify(params),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+    // const options = {
+    //   method: "POST",
+    //   body: JSON.stringify(params),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // };
 
   function handleTitleChange(event) {
     event.preventDefault();
@@ -92,11 +97,11 @@ export default function Compose() {
     },
   };
 
-  const makeQuery = async () => {
-    const response = await fetch("api/createPost", options);
-    const data = await response.json();
-    console.log(data);
-  };
+//   const makeQuery = async () => {
+//     const response = await fetch("api/createPost", options);
+//     const data = await response.json();
+//     console.log(data);
+//   };
 
   return (
     <>
@@ -138,7 +143,7 @@ export default function Compose() {
         </form>
 
 
-  <button className="p-2 m-4 fw-bold bg-blue-600 rounded " onClick={makeQuery}>Submit</button>
+  <button className="p-2 m-4 fw-bold bg-blue-600 rounded " >Submit</button>
   :
   <button href="/login" className="">
     <Link href="/login">LOGIN TO POST AS YOURSELF</Link>
