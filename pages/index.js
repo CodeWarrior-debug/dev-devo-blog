@@ -41,7 +41,7 @@ useEffect(()=>{
       {/* <main className="bg-dark min-vh-100"> */}
       
 
-      <Navbar/>
+      <Navbar />
       <Heading/>
       <PostPreviews allBlogs={blogs} />
 <Footer/>

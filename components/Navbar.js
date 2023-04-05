@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button"
 const Navbar = () => {
   return (
     <>
-        <nav className="navbar navbar-expand-sm navbar-light" id="mainNav">
+        <nav className="navbar navbar-expand-sm navbar-light fixed-top bg-light" id="mainNav" >
             <div className="container px-4 px-lg-5">
               <Link className="navbar-brand " href="/"><p className='fs-1'>Devo + Dev</p> </Link>
                 <Button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" >
