@@ -36,15 +36,12 @@ export default function Blog() {
     });
 
     const data = await response.json();
-    // .then(
 
-    // )
-    // .catch(console.log(err))
-    //   setPost(data);
-    // console.log(data)
     setUrl(data.url);
     setTitle(data.title), setContent(data.postBody);
     setUpdatedDateTime(new Date().toDateString());
+    setAuthor(data.author);
+    setCreatedDateTime(new Date(Date.parse(data.createddateTime)).toDateString());
   };
 
   useEffect(() => {
@@ -101,6 +98,10 @@ export default function Blog() {
     event.preventDefault();
     setTitle(event.target.value);
   }
+  function handleSubTitleChange(event) {
+    event.preventDefault();
+    setSubtitle(event.target.value);
+  }
 
   const modules = {
     toolbar: [
@@ -148,6 +149,17 @@ export default function Blog() {
                 className="mr-4"
               />
               <span className="pl-4 ">{title}</span>
+              <br />
+              <input
+                type="text"
+                value={subtitle}
+                name="title"
+                placeholder="Enter a subtitle"
+                onChange={handleSubTitleChange}
+                required
+                className="mr-4"
+              />
+              <span className="pl-4 ">{subtitle}</span>
               <br />
               <br />
               <div className="bg-white ">
