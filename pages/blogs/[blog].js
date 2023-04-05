@@ -1,13 +1,13 @@
-import slugify from "slugify";
-import Link from "next/link";
 
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useEffect } from "react";
-import { db } from "@/lib/firesStoreRef";
+
 
 import { useRouter } from "next/router";
+import Navbar from "@/components/Navbar";
 
 // title,post,author,date,subtitle,url,idNum,tagsArr,commentsArr
 
@@ -72,28 +72,6 @@ export default function Blog() {
     console.log(data);
   };
 
-  // const [url,setUrl]=useState("")
-  // const [tagsArr,setTagsArr]=useState("")
-
-  // const params = {
-  //   title:title,
-  //   idNum:idNum,
-  //   postBody:content,
-  //   author:author,
-  //   subtitle:subtitle,
-  //   createddateTime:createddateTime,
-  //   updateddateTime:updateddateTime,
-  //   // url:url - added downstream
-
-  // }
-
-  // const options = {
-  //   method: "POST",
-  //   body: JSON.stringify(params),
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // };
 
   function handleTitleChange(event) {
     event.preventDefault();
@@ -124,16 +102,13 @@ export default function Blog() {
     },
   };
 
-  //   const makeQuery = async () => {
-  //     const response = await fetch("api/createPost", options);
-  //     const data = await response.json();
-  //     console.log(data);
-  //   };
+
 
   return (
     <>
-      {/* <Header /> */}
-      <div className="container">
+      <Navbar/>
+      <div className="container position-relative mt-5 pt-3">
+        <div className="container position-relative pt-5">
         <div className="text-black flex flex-col justify-start items-center min-h-screen bg-[#0C3BAA] p-[1em] w-full">
           {/* TODO find exact blue and cream colors (maybe cream gradient?) desired) */}
           {/* <form onSubmit={submitHandler} className="min-w-[16em] w-4/5 border-none "> */}
@@ -207,6 +182,7 @@ export default function Blog() {
 
           {/* <p>Comments: {commentsArr}</p> */}
         </details>
+      </div>
       </div>
     </>
   );

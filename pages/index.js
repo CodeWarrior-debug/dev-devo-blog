@@ -23,7 +23,7 @@ useEffect(()=>{
   
   getFBDocs()
   
-  console.log("blogs", blogs)
+  // console.log("blogs", blogs)
 
 },[])
 
@@ -44,6 +44,12 @@ useEffect(()=>{
       <Navbar />
       <Heading/>
       <PostPreviews allBlogs={blogs} />
+                  {/* Pager */}
+                  {/* <div className="d-flex justify-content-end mb-4">
+              <Link className="btn btn-primary text-uppercase" href="#!">
+                All Posts →
+              </Link>
+            </div> */}
 <Footer/>
 
       {/* <!-- Navigation--> */}

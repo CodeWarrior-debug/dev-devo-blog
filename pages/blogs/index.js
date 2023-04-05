@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {collection, getDocs} from "firebase/firestore"
 import { db } from '@/lib/firesStoreRef'
+import PostPreviews from '@/components/PostPreviews'
+import PostPreview from '@/components/PostPreview'
 
 
 const AllBlogs = () => {
@@ -28,13 +30,12 @@ const AllBlogs = () => {
 
   return (
     <>
-{posts.map((item, index)=>{
-    return (
-        <p key={index}>{item.author}</p>
+
+        
+        <PostPreviews allBlogs={posts}/>
+        
+</>
     )
-})}
-    </>
-  )
 }
 
 export default AllBlogs
