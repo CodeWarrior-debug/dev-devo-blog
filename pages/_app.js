@@ -6,7 +6,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Head from "next/head"
 import { useEffect } from "react";
-import {Playfair_Display, Libre_Franklin} from "next/font/google"
+import {Playfair_Display} from "next/font/google"
 import cls from 'classnames'
 
 const play_fair_display = Playfair_Display({subsets:['cyrillic']}, {style:"normal"})
