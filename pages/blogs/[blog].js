@@ -39,6 +39,7 @@ export default function Blog() {
 
     setUrl(data.url);
     setTitle(data.title), setContent(data.postBody);
+    setSubtitle(data.subtitle)
     setUpdatedDateTime(new Date().toDateString());
     setAuthor(data.author);
     setCreatedDateTime(new Date(Date.parse(data.createddateTime)).toDateString());
