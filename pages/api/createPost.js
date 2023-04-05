@@ -16,6 +16,8 @@ export default function handler(req, res) {
     const updateddateTime = req.body.updateddateTime;
     const url = slugify(req.body.title).toLowerCase();
     const idNum = req.body.idNum;
+    const tagsArr = [""];
+    const commentsArr = [""];
     // const tagsArr = req.body.tagsArr;
     // const commentsArr = req.body.commentsArr;
 
@@ -28,8 +30,8 @@ export default function handler(req, res) {
       subtitle: subtitle,
       url: url + "-" + idNum,
       idNum: idNum,
-      // tagsArr: tagsArr,
-      // commentsArr: commentsArr,
+      tagsArr: tagsArr,
+      commentsArr: commentsArr,
     };
 
     const addPost = async () => {

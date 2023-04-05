@@ -40,7 +40,8 @@ export default function Compose() {
     const [title, setTitle] = useState("");
     const [idNum,setIdNum]=useState("")
     const [content, setContent] = useState("");
-    const [author, setAuthor] = useState("ANONYMOUS")
+    const [author, setAuthor] = useState("CodeWarrior-debug")
+    // const [author, setAuthor] = useState("ANONYMOUS")
     const [subtitle, setSubtitle] =useState("")
     const [createddateTime, setCreatedDateTime]=useState("")
     const [updateddateTime,setUpdatedDateTime]=useState("")
@@ -71,7 +72,10 @@ export default function Compose() {
     event.preventDefault();
     setTitle(event.target.value);
   }
-
+  function handleSubTitleChange(event) {
+    event.preventDefault();
+    setSubtitle(event.target.value);
+  }
   const modules = {
     toolbar: [
       [{ header: "1" }, { header: "2" }, { header: "3" }, { font: [] }],
@@ -121,7 +125,17 @@ export default function Compose() {
               className="mr-4"
             />
             <span className="pl-4 " >{title}</span>
-            <br/>
+            <br />
+              <input
+                type="text"
+                value={subtitle}
+                name="title"
+                placeholder="Enter a subtitle"
+                onChange={handleSubTitleChange}
+                required
+                className="mr-4"
+              />
+              <span className="pl-4 ">{subtitle}</span>
             <br/>
           <div className="bg-white ">
             <QuillNoSSRWrapper
@@ -151,7 +165,7 @@ export default function Compose() {
       </div>
         <div className="container">
 
-        <details  closed> 
+        <details  > 
       <summary className="fw-bold"> SHOW HTML VALUES FOR DATABASE</summary>
 
 
