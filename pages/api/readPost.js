@@ -14,15 +14,25 @@ export default function handler(req, res) {
 
       const docRef = doc(db, "posts", req.headers.custompostindex.toString());
       const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
+      // try{
+        if (docSnap.exists()) {
         res.status(200).json(docSnap.data());
-        // console.log("document data", docSnap.data());
+        // res.end()
       } else {
         console.log("NO DOC BRO!!!");
       }
-    };
+    }
+      // } catch (err){
+      //   res.status(500).json({ error: 'failed to load data' })
 
-    getPost();
+      // }
+        
+        
+        
+        // console.log("document data", docSnap.data());
+    // };
+
+     getPost();
   } catch (err) {
     console.log(err);
   }

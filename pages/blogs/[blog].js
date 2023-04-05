@@ -6,8 +6,9 @@ import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useEffect } from "react";
 import { db } from "@/lib/firesStoreRef";
-import { getCountFromServer, collection } from "firebase/firestore";
+
 import {useRouter} from "next/router"
+
 
 // title,post,author,date,subtitle,url,idNum,tagsArr,commentsArr
 
@@ -27,7 +28,7 @@ export default function Blog() {
       const [createddateTime, setCreatedDateTime]=useState("")
       const [updateddateTime,setUpdatedDateTime]=useState("")
 
-    const number = 1;
+    
     const router = useRouter()
   
     const getData = async () => {
@@ -37,10 +38,17 @@ export default function Blog() {
         
         },
       });
-      const data = await response.json();
+      
+      const data = await response.json()
+      // .then(
+
+      // )
+      // .catch(console.log(err))
     //   setPost(data);
-      console.log(data)
-      setTitle(data.title)
+      // console.log(data)
+      setTitle(data.title),
+      setContent(data.postBody)
+
     };
 
   useEffect(()=>{
@@ -48,6 +56,37 @@ export default function Blog() {
     
     
   })
+
+      const params = {
+      title:title,
+      postBody:content,
+      // author:author,
+      subtitle:subtitle,
+      // createddateTime:createddateTime,
+      updateddateTime:updateddateTime,
+      // url:url - added downstream
+
+    }
+
+    const options = {
+      method: "POST",
+      body: JSON.stringify(params),
+      headers: {
+        "Content-Type": "application/json",
+        "custompostindex":idNum
+      },
+    };
+
+
+
+  const updateData = async ()=>{
+    const response = await fetch("../api/updatePost2",options)
+    // const response = await fetch("../api/updatePost2")
+    const data= await response.json()
+    console.log(data)
+
+
+  }
 
     // const [url,setUrl]=useState("")
     // const [tagsArr,setTagsArr]=useState("")
@@ -129,13 +168,23 @@ export default function Blog() {
             <br/>
             <br/>
           <div className="bg-white ">
+            {/* https://quilljs.com/docs/api/ */}
             <QuillNoSSRWrapper
               modules={modules}
               onChange={setContent}
               theme="snow"
               className=" min-h-[15vh] h-[60vh]"
-              />
+          
+          value={content}
+              >
+
+                
+              </QuillNoSSRWrapper>
+          
+
           </div>
+          
+
           </div>
 
           
@@ -143,7 +192,7 @@ export default function Blog() {
         </form>
 
 
-  <button className="p-2 m-4 fw-bold bg-blue-600 rounded " >Submit</button>
+  <button className="p-2 m-4 fw-bold bg-blue-600 rounded" onClick={updateData}>Update</button>
   :
   <button href="/login" className="">
     <Link href="/login">LOGIN TO POST AS YOURSELF</Link>
@@ -156,7 +205,7 @@ export default function Blog() {
       </div>
         <div className="container">
 
-        <details  closed> 
+        <details  > 
       <summary className="fw-bold"> SHOW HTML VALUES FOR DATABASE</summary>
 
 
