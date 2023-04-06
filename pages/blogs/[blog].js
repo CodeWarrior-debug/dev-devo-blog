@@ -7,7 +7,9 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar";
 import ReactQuill from "react-quill";
+// import useSWR from "swr"
 
+// const fetcher = (...args) => fetch(...args).then((res) => res.json())
 // title,post,author,date,subtitle,url,idNum,tagsArr,commentsArr
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
@@ -15,7 +17,9 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   loading: () => <p>Loading ...</p>,
 });
 
+
 export default function Blog() {
+
   // states
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -25,6 +29,8 @@ export default function Blog() {
   const [updateddateTime, setUpdatedDateTime] = useState("");
   const [url, setUrl] = useState("");
 
+
+  
   const router = useRouter();
 
 
