@@ -28,6 +28,7 @@ export default function Blog() {
   const [createddateTime, setCreatedDateTime] = useState("");
   const [updateddateTime, setUpdatedDateTime] = useState("");
   const [url, setUrl] = useState("");
+  const [idNum, setIdNum]  = useState("");
 
 
   
@@ -49,6 +50,9 @@ export default function Blog() {
     setUpdatedDateTime(new Date().toDateString());
     setAuthor(data.author);
     setCreatedDateTime(new Date(Date.parse(data.createddateTime)).toDateString());
+    const splitter = router.query.blog.split("-")
+    // console.log(splitter[splitter.length-1])
+    setIdNum (splitter[splitter.length-1])
   };
 
   useEffect(() => {
@@ -79,8 +83,24 @@ export default function Blog() {
     },
   };
 
+  const delOptions = {
+    method: "DELETE",
+    // body: JSON.stringify(params),
+    headers: {
+      "Content-Type": "application/json",
+      custompostindex: idNum,
+    },
+  };
+
   const updateData = async () => {
     const response = await fetch("../api/updatePost", options);
+    // const response = await fetch("../api/updatePost2")
+    const data = await response.json();
+    console.log(data);
+  };
+
+  const deletePost = async () => {
+    const response = await fetch("../api/deletePost", delOptions);
     // const response = await fetch("../api/updatePost2")
     const data = await response.json();
     console.log(data);
@@ -178,6 +198,12 @@ Quill.register(Font, true)
             onClick={updateData}
           >
             Update
+          </button>
+          <button
+            className="p-2 m-4 fw-bold bg-red-600 rounded"
+            onClick={deletePost}
+          >
+            DELETE
           </button>
           :
           <button href="/login" className="">

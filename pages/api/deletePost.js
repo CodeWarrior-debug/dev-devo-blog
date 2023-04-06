@@ -7,9 +7,11 @@ import { db } from "../../lib/firesStoreRef";
 export default async function handler(req, res) {
   try {
 
+    console.log(req.headers)
     await deleteDoc(doc(db,"posts",req.headers.custompostindex.toString()))
 
     console.log("doc deleted")
+    res.send(200)
 
 
   } catch (err) {
