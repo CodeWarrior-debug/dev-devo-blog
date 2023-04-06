@@ -1,40 +1,31 @@
-import React, {useEffect, useState} from 'react'
-import {collection, getDocs} from "firebase/firestore"
-import { db } from '@/lib/firesStoreRef'
-import PostPreviews from '@/components/PostPreviews'
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import PostPreviews from "@/components/PostPreviews";
+import { useEffect, useState } from "react";
 
+// TODO change font
 
-const AllBlogs = () => {
-    const [posts,setPosts]=useState([])
+export default function AllBlogs() {
+  const [blogs, setBlogs] = useState([]);
 
-    const pullData = async ()=>{
-        const fbPosts = []
-        const querySnapshot = await getDocs(collection(db, "posts"));
-        querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-        //   console.log(doc.id, " => ", doc.data());
-          fbPosts.push(doc.data())
-        });
+  useEffect(() => {
+    const getFBDocs = async () => {
+      const res = await fetch("./api/readPosts");
+      const data = await res.json();
 
-        setPosts(fbPosts)
-    }
+      setBlogs(data);
+    };
 
+    getFBDocs();
 
-    useEffect(()=>{
-        pullData();
-
-    },[])
-
-
+    // console.log("blogs", blogs)
+  }, []);
 
   return (
     <>
-
-        
-        <PostPreviews allBlogs={posts}/>
-        
-</>
-    )
+      <Navbar />
+      <PostPreviews allBlogs={blogs} />
+      <Footer />
+    </>
+  );
 }
-
-export default AllBlogs

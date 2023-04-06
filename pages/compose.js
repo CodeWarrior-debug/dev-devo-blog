@@ -1,7 +1,9 @@
+import Image from "next/image";
 import AutoHideToast from "@/components/Toast"
+import Toast from "react-bootstrap/Toast"
 import slugify from "slugify";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { Router,useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
@@ -47,6 +49,8 @@ export default function Compose() {
     const [subtitle, setSubtitle] =useState("")
     const [createddateTime, setCreatedDateTime]=useState("")
     const [updateddateTime,setUpdatedDateTime]=useState("")
+  const [show, setShow] = useState(false);
+
     // const [url,setUrl]=useState("")
     // const [tagsArr,setTagsArr]=useState("")
     
@@ -100,14 +104,21 @@ export default function Compose() {
     },
   };
 
-  const router=useRouter()
-  const makeQuery = async (e) => {
-    e.preventDefault();
-    const response = await fetch("api/createPost", options);
-    router.push("/")
-    const data = await response.json();
+  // const router=useRouter()
+  const makeQuery = async () => {
+    // e.preventDefault();
+    const data = fetch("api/createPost", options);
     console.log(data);
+    
+    
+    // router.push("/blogs")
   };
+
+const router=useRouter()
+
+  const reRoute = ()=>{
+    router.push('/blogs')
+  }
 
   return (
     <>
@@ -163,13 +174,28 @@ export default function Compose() {
         </form>
 
 
-  <button className="p-2 m-4 fw-bold bg-blue-600 rounded " onClick={makeQuery}>Submit</button>
+  <button className="p-2 m-4 fw-bold bg-blue-600 rounded " onClick={()=>{ makeQuery(); setShow(true); reRoute();}}>Submit</button>
   :
   <button href="/login" className="">
     <Link href="/login">LOGIN TO POST AS YOURSELF</Link>
     </button>
 
-<AutoHideToast/>
+{/* <AutoHideToast/> */}
+
+<Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
+          <Toast.Header>
+<Image
+src="vercel.svg"
+height={100}
+width={100}
+alt={"temp"}
+
+/>
+            <strong className="me-auto">Great Success!</strong>
+            <small>Just now</small>
+          </Toast.Header>
+          <Toast.Body>Woohoo, your post <span className="fw-bold">{title}</span>  successfully stored! Redirecting...</Toast.Body>
+        </Toast>
 
 {/* Temporary */}
           {/* <button className="p-2 m-4 fw-bold bg-blue-600 rounded ">Submit</button> */}
