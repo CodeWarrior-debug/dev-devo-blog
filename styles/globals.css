@@ -1,0 +1,10 @@
+
+ .ql-font span[data-label="Aref Ruqaa"]::before {
+    font-family: "Aref Ruqaa";
+  }
+   .ql-font span[data-label="Mirza"]::before {
+    font-family: "Mirza";
+  }
+  .ql-font span[data-label="Roboto"]::before {
+    font-family: "Roboto";
+  }

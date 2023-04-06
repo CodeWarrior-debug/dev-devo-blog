@@ -1,7 +1,8 @@
-import React, {useState} from "react"
 import Quill from "react-quill"
 
-
+// !!!!!!!!!!!!!!!!!!! MUCH OF THIS IS FOR REFERENCE ONLY!!!!!!!!!!!!!!!!!!
+// react font adding Codepen - https://codepen.io/alexkrolick/pen/NapmrE
+// react quill demo Codepen playground - https://codepen.io/alexkrolick/pen/xgyOXQ/left?editors=0010#0
 
 // Custom Undo button icon component for Quill editor. You can import it directly
 // from 'quill/assets/icons/undo.svg' but I found that a number of loaders do not
@@ -35,6 +36,8 @@ const CustomUndo = () => (
     this.quill.history.redo();
   }
   
+
+
   // Add sizes to whitelist and register them
   const Size = Quill.import("formats/size");
   Size.whitelist = ["extra-small", "small", "medium", "large"];
@@ -48,7 +51,7 @@ const CustomUndo = () => (
     "courier-new",
     "georgia",
     "helvetica",
-    "lucida"
+    "lucida",
   ];
   Quill.register(Font, true);
   
@@ -89,6 +92,8 @@ const CustomUndo = () => (
     "color",
     "code-block"
   ];
+
+  // Unused example
 
 export const QuillToolbar = () => {
 

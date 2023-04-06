@@ -4,10 +4,9 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useEffect } from "react";
-
-
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar";
+import ReactQuill from "react-quill";
 
 // title,post,author,date,subtitle,url,idNum,tagsArr,commentsArr
 
@@ -27,6 +26,10 @@ export default function Blog() {
   const [url, setUrl] = useState("");
 
   const router = useRouter();
+
+  const testInterval = ()=>{
+    setInterval()
+  }
 
   const getData = async () => {
     const response = await fetch("../api/readPost", {
@@ -48,6 +51,8 @@ export default function Blog() {
   useEffect(() => {
     getData();
   });
+
+  
 
   const params = {
     title: title,
@@ -81,12 +86,21 @@ export default function Blog() {
     event.preventDefault();
     setSubtitle(event.target.value);
   }
+// React Quill settings
+
+
+
+const Quill = ReactQuill.Quill
+var Font = Quill.import('formats/font')
+const fonts_whitelist = ['Ubuntu', 'Raleway', 'Roboto']
+Font.whitelist = fonts_whitelist;
+Quill.register(Font, true)
 
   const modules = {
     toolbar: [
       [{ header: "1" }, { header: "2" }, { header: "3" }, { font: [] }],
       [{ size: [] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
+      ["bold", "italic", "underline", "strike", "blockquote",{color:[]}],
       [
         { list: "ordered" },
         { list: "bullet" },
@@ -102,7 +116,7 @@ export default function Blog() {
     },
   };
 
-
+const formats = ["color"]
 
   return (
     <>
@@ -134,19 +148,21 @@ export default function Blog() {
                 onChange={handleSubTitleChange}
                 required
                 className="mr-4"
+                
               />
               <span className="pl-4 ">{subtitle}</span>
               <br />
               <br />
-              <div className="bg-white ">
+              <div className="bg-white container">
                 {/* https://quilljs.com/docs/api/ */}
                 <QuillNoSSRWrapper
                   modules={modules}
                   onChange={setContent}
+                  formats={formats}
                   theme="snow"
                   className=" min-h-[15vh] h-[60vh]"
                   value={content}
-                ></QuillNoSSRWrapper>
+                />
               </div>
             </div>
           </form>

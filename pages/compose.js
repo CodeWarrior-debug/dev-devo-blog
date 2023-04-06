@@ -31,10 +31,10 @@ export default function Compose() {
       setUpdatedDateTime(dateTimeString)
       setCreatedDateTime(dateTimeString)
 
+      console.log("useEffect ran")
     }
 
     nextDocNumber()
-    
   })
   // states 
     const [title, setTitle] = useState("");
