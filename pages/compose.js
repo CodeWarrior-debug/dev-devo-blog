@@ -91,7 +91,7 @@ export default function Compose() {
         { indent: "-1" },
         { indent: "+1" },
       ],
-      ["link", "image", "video","codeblock"],
+      ["link", "image", "video","code-block"],
       ["clean"],
     ],
     clipboard: {
