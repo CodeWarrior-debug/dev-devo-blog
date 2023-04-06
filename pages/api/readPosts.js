@@ -19,6 +19,7 @@ export default function handler(req, res) {
         allDocs.push(doc.data())
       });
 
+      allDocs.sort((a,b)=> parseInt(a.idNum)- parseInt(b.idNum) )
       
       res.status(200).json(allDocs)
       
