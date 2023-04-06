@@ -27,9 +27,6 @@ export default function Blog() {
 
   const router = useRouter();
 
-  const testInterval = ()=>{
-    setInterval()
-  }
 
   const getData = async () => {
     const response = await fetch("../api/readPost", {
@@ -49,8 +46,14 @@ export default function Blog() {
   };
 
   useEffect(() => {
-    getData();
-  });
+
+    const callData = async()=>{
+      await getData()
+    }
+
+     callData()
+
+  },[]);
 
   
 
@@ -107,7 +110,7 @@ Quill.register(Font, true)
         { indent: "-1" },
         { indent: "+1" },
       ],
-      ["link", "image", "video"],
+      ["link", "image", "video","code-block"],
       ["clean"],
     ],
     clipboard: {
@@ -116,7 +119,7 @@ Quill.register(Font, true)
     },
   };
 
-const formats = ["color"]
+// const formats = ["color"]
 
   return (
     <>
@@ -158,7 +161,6 @@ const formats = ["color"]
                 <QuillNoSSRWrapper
                   modules={modules}
                   onChange={setContent}
-                  formats={formats}
                   theme="snow"
                   className=" min-h-[15vh] h-[60vh]"
                   value={content}
