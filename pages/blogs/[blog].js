@@ -127,10 +127,8 @@ Quill.register(Font, true)
       <div className="container position-relative mt-5 pt-3">
         <div className="container position-relative pt-5">
         <div className="text-black flex flex-col justify-start items-center min-h-screen bg-[#0C3BAA] p-[1em] w-full">
-          {/* TODO find exact blue and cream colors (maybe cream gradient?) desired) */}
-          {/* <form onSubmit={submitHandler} className="min-w-[16em] w-4/5 border-none "> */}
           <form className="min-w-[16em] w-4/5 border-none ">
-            {/* <label htmlFor="title">Title</label> */}
+            
             <div className="bg-white h-[70vh]">
               <input
                 type="text"
@@ -164,6 +162,7 @@ Quill.register(Font, true)
                   theme="snow"
                   className=" min-h-[15vh] h-[60vh]"
                   value={content}
+                  placeholder="Write your post here..."
                 />
               </div>
             </div>

@@ -1,12 +1,14 @@
+import AutoHideToast from "@/components/Toast"
 import slugify from "slugify";
 import Link from "next/link";
-
+import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useEffect } from "react";
 import { db } from "@/lib/firesStoreRef";
 import { getCountFromServer, collection } from "firebase/firestore";
+import Navbar from "@/components/Navbar";
 
 
 // title,post,author,date,subtitle,url,idNum,tagsArr,commentsArr
@@ -31,11 +33,11 @@ export default function Compose() {
       setUpdatedDateTime(dateTimeString)
       setCreatedDateTime(dateTimeString)
 
-      console.log("useEffect ran")
+      // console.log("useEffect ran")
     }
 
     nextDocNumber()
-  })
+  },[])
   // states 
     const [title, setTitle] = useState("");
     const [idNum,setIdNum]=useState("")
@@ -48,6 +50,8 @@ export default function Compose() {
     // const [url,setUrl]=useState("")
     // const [tagsArr,setTagsArr]=useState("")
     
+  
+
     const params = {
       title:title,
       idNum:idNum,
@@ -80,14 +84,14 @@ export default function Compose() {
     toolbar: [
       [{ header: "1" }, { header: "2" }, { header: "3" }, { font: [] }],
       [{ size: [] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
+      ["bold", "italic", "underline", "strike", "blockquote", {color:[]}],
       [
         { list: "ordered" },
         { list: "bullet" },
         { indent: "-1" },
         { indent: "+1" },
       ],
-      ["link", "image", "video"],
+      ["link", "image", "video","codeblock"],
       ["clean"],
     ],
     clipboard: {
@@ -96,18 +100,24 @@ export default function Compose() {
     },
   };
 
-  const makeQuery = async () => {
+  const router=useRouter()
+  const makeQuery = async (e) => {
+    e.preventDefault();
     const response = await fetch("api/createPost", options);
+    router.push("/")
     const data = await response.json();
     console.log(data);
   };
 
   return (
     <>
-      {/* <Header /> */}
-      <div className="container">
+      <Navbar/>
+      <div className="container position-relative mt-5 pt-3">
+        <div className="container position-relative pt-5">
+        <div className="text-black flex flex-col justify-start items-center min-h-screen bg-[#0C3BAA] p-[1em] w-full">
+      
 
-      <div className="text-black flex flex-col justify-start items-center min-h-screen bg-[#0C3BAA] p-[1em] w-full">
+      
         {/* TODO find exact blue and cream colors (maybe cream gradient?) desired) */}
 
 
@@ -143,6 +153,7 @@ export default function Compose() {
               onChange={setContent}
               theme="snow"
               className=" min-h-[15vh] h-[60vh]"
+              placeholder="Write your post here..."
               />
           </div>
           </div>
@@ -158,6 +169,7 @@ export default function Compose() {
     <Link href="/login">LOGIN TO POST AS YOURSELF</Link>
     </button>
 
+<AutoHideToast/>
 
 {/* Temporary */}
           {/* <button className="p-2 m-4 fw-bold bg-blue-600 rounded ">Submit</button> */}
@@ -183,6 +195,7 @@ export default function Compose() {
 
 
         </details>
+        </div>
         </div>
 
     </>
