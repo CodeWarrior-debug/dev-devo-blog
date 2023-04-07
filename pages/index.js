@@ -5,19 +5,23 @@ import Heading from "@/components/Heading";
 import PostPreviews from "@/components/PostPreviews";
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export default async function Home() {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    const getFBDocs = async () => {
-      const res = await fetch("./api/readPosts");
-      const data = await res.json();
+    const get5Docs = async()=>{
 
-      setBlogs(data);
+      const getFBDocs = async () => {
+        const res = await fetch("./api/read5Posts");
+        const data = await res.json();
+  
+        setBlogs(data);
+    }
+    
+    await getFBDocs();
     };
 
-    getFBDocs();
-
+  get5Docs()
     // console.log("blogs", blogs)
   }, []);
 

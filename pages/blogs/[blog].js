@@ -7,10 +7,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar";
 import ReactQuill from "react-quill";
-// import useSWR from "swr"
 
-// const fetcher = (...args) => fetch(...args).then((res) => res.json())
-// title,post,author,date,subtitle,url,idNum,tagsArr,commentsArr
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -20,7 +17,7 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
 
 export default function Blog() {
 
-  // states
+  
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("ANONYMOUS");
@@ -51,7 +48,7 @@ export default function Blog() {
     setAuthor(data.author);
     setCreatedDateTime(new Date(Date.parse(data.createddateTime)).toDateString());
     const splitter = router.query.blog.split("-")
-    // console.log(splitter[splitter.length-1])
+  
     setIdNum (splitter[splitter.length-1])
   };
 
@@ -75,7 +72,7 @@ export default function Blog() {
   };
 
   const options = {
-    method: "POST",
+    method: "PUT",
     body: JSON.stringify(params),
     headers: {
       "Content-Type": "application/json",
@@ -85,25 +82,29 @@ export default function Blog() {
 
   const delOptions = {
     method: "DELETE",
-    // body: JSON.stringify(params),
     headers: {
       "Content-Type": "application/json",
       custompostindex: idNum,
     },
   };
 
+
   const updateData = async () => {
+    
     const response = await fetch("../api/updatePost", options);
-    // const response = await fetch("../api/updatePost2")
     const data = await response.json();
-    console.log(data);
+    if(data){
+      router.push("/blogs")
+    }
   };
 
   const deletePost = async () => {
     const response = await fetch("../api/deletePost", delOptions);
-    // const response = await fetch("../api/updatePost2")
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
+    if(data){
+      router.push("/blogs")
+    }
   };
 
 
@@ -227,9 +228,7 @@ Quill.register(Font, true)
           </p>
 
           <p>URL Slug: {url}</p>
-          {/* <p>Tags: {tagsArr}</p> */}
 
-          {/* <p>Comments: {commentsArr}</p> */}
         </details>
       </div>
       </div>
