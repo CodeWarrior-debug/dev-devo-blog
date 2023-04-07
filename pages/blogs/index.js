@@ -3,8 +3,6 @@ import Navbar from "@/components/Navbar";
 import PostPreviews from "@/components/PostPreviews";
 import { useEffect, useState } from "react";
 
-// TODO change font
-
 export default function AllBlogs() {
   const [blogs, setBlogs] = useState([]);
 
