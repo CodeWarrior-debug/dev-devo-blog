@@ -5,7 +5,6 @@ import "react-quill/dist/quill.snow.css";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar";
-import ReactQuill from "react-quill";
 
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {

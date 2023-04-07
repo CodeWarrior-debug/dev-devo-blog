@@ -22,7 +22,7 @@ export default function Home() {
     };
 
   get5Docs()
-    console.log("blogs", blogs)
+    // console.log("blogs", blogs)
   }, []);
 
   return (
