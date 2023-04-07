@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar";
 import { Montserrat, Alegreya } from "next/font/google";
 import cls from "classnames"
+// import domPurify from "dompurify";
+import  parse from "html-react-parser";
 
 const alegreya = Alegreya({ subsets: ["latin"] });
 const montserrat = Montserrat({ subsets: ["latin"] });
@@ -28,6 +30,7 @@ export default function Blog() {
   const [url, setUrl] = useState("");
   const [idNum, setIdNum] = useState("");
   const [userIsAuthor, setUserIsAuthor] = useState(false);
+  const [html, setHtml] = useState('')
 
   const router = useRouter();
 
@@ -39,12 +42,10 @@ export default function Blog() {
     });
 
     const data = await response.json();
-
-    setUrl(data.url);
-    setTitle(data.title), setContent(data.postBody);
-    setSubtitle(data.subtitle);
+// about to sanitize
+    setUrl(data.url); setTitle(data.title); setSubtitle(data.subtitle); setAuthor(data.author);
+    setContent((data.postBody));
     setUpdatedDateTime(new Date().toDateString());
-    setAuthor(data.author);
     setCreatedDateTime(new Date(Date.parse(data.createddateTime)).toDateString());
     const splitter = router.query.blog.split("-")
   
@@ -151,10 +152,22 @@ export default function Blog() {
         <div className="container position-relative pt-5">
           <div className="text-black flex flex-col justify-start items-center min-h-screen bg-[#0C3BAA] p-[1em] w-full">
 {
-  userIsAuthor ? 
+  !userIsAuthor ? 
            (
            <>
-           <form className="min-w-[16em] w-4/5 border-none ">
+    <h1 className={cls(montserrat.className," text-center m-2")}>{title}</h1>
+    <h2 className="text-center text-muted mb-2">{subtitle}</h2>
+    {/* <p dangerouslySetInnerHTML={{__html: `${content}`}} className="m-5 p-5"></p> */}
+                        </>
+            )
+
+:
+
+    ( 
+      <>
+
+
+    <form className="min-w-[16em] w-4/5 border-none ">
               <div className="bg-white h-[70vh]">
                 <input
                   type="text"
@@ -204,19 +217,6 @@ export default function Blog() {
             >
               DELETE
             </button>
-                        </>
-            )
-
-:
-
-    ( 
-      <>
-    <h1 className=" text-center m-2">{title}</h1>
-    <h2 className="text-center text-muted mb-2">{subtitle}</h2>
-
-    <div dangerouslySetInnerHTML={{__html: `${content}`}} className="m-5 p-5" />
-
-
 
 
     </>
@@ -236,7 +236,7 @@ export default function Blog() {
         <details>
           <summary className="fw-bold"> SHOW HTML VALUES FOR DATABASE</summary>
 
-          <p>Body: {content}</p>
+          <div>Body: {content}</div>
 
           <p>Title: {title}</p>
           <p>Subtitle: {subtitle}</p>
