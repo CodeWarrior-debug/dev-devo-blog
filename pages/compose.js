@@ -19,7 +19,6 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
 });
 
 export default function Compose() {
-
   const router = useRouter();
 
   useEffect(() => {
@@ -104,20 +103,13 @@ export default function Compose() {
     router.push("/");
   };
 
-  
-
-
-
   return (
     <>
       <Navbar />
       <div className="container position-relative mt-5 pt-3">
         <div className="container position-relative pt-5">
           <div className="text-black flex flex-col justify-start items-center min-h-screen bg-[#0C3BAA] p-[1em] w-full">
-            {/* TODO find exact blue and cream colors (maybe cream gradient?) desired) */}
-            {/* <form onSubmit={submitHandler} className="min-w-[16em] w-4/5 border-none "> */}
             <form className="min-w-[16em] w-4/5 border-none ">
-              {/* <label htmlFor="title">Title</label> */}
               <div className="bg-white h-[70vh]">
                 <input
                   type="text"
@@ -157,7 +149,6 @@ export default function Compose() {
               onClick={() => {
                 makeQuery();
                 setShow(true);
-
               }}
             >
               Submit
@@ -166,7 +157,6 @@ export default function Compose() {
             <button href="/login" className="">
               <Link href="/login">LOGIN TO POST AS YOURSELF</Link>
             </button>
-            {/* <AutoHideToast/> */}
             <Toast
               onClose={() => setShow(false)}
               show={show}
@@ -183,8 +173,6 @@ export default function Compose() {
                 successfully stored! Redirecting...
               </Toast.Body>
             </Toast>
-            {/* Temporary */}
-            {/* <button className="p-2 m-4 fw-bold bg-blue-600 rounded ">Submit</button> */}
           </div>
         </div>
         <div className="container">

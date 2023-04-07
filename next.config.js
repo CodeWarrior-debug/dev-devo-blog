@@ -11,18 +11,7 @@ const nextConfig = {
   swcMinify: true,
 
 
-  // TODO remove or change images settings
-  images:{
-    remotePatterns:[
-      {
-        protocol:'https',
-        hostname:"image.tmdb.org",
-        // port:'',
-        // pathname:'/account123/**'
-      }
-    ]
 
-  },
 
 
   
