@@ -19,6 +19,9 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
 });
 
 export default function Compose() {
+
+  const router = useRouter();
+
   useEffect(() => {
     const nextDocNumber = async () => {
       const dateTime = new Date();
@@ -29,7 +32,6 @@ export default function Compose() {
       setIdNum(snapshot.data().count + 1);
       setUpdatedDateTime(dateTimeString);
       setCreatedDateTime(dateTimeString);
-      // console.log("useEffect ran")
     };
 
     nextDocNumber();
@@ -99,15 +101,12 @@ export default function Compose() {
     // e.preventDefault();
     const data = fetch("api/createPost", options);
     console.log(data);
-
-    router.push("/blogs");
+    router.push("/");
   };
 
-  const router = useRouter();
+  
 
-  const reRoute = () => {
-    router.push("/blogs");
-  };
+
 
   return (
     <>
@@ -158,7 +157,7 @@ export default function Compose() {
               onClick={() => {
                 makeQuery();
                 setShow(true);
-                reRoute();
+
               }}
             >
               Submit
