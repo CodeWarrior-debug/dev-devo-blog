@@ -5,10 +5,7 @@ import "react-quill/dist/quill.snow.css";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar";
-import parse from 'html-react-parser'
-import DOMpurify from 'dompurify'
-
-
+import DOMPurify from "isomorphic-dompurify";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -18,7 +15,6 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
 // const DOMpurify = require('dompurify')(window)
 export default function Blog() {
   
-  const dompurify=DOMpurify
   
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("<h1>parse WORKS!!</h1>");
@@ -28,6 +24,7 @@ export default function Blog() {
   const [updateddateTime, setUpdatedDateTime] = useState("");
   const [url, setUrl] = useState("");
   const [idNum, setIdNum] = useState("");
+  const [userIsAuthor, setUserIsAuthor] = useState("");
 
   const router = useRouter();
 
@@ -120,6 +117,8 @@ export default function Blog() {
   // Font.whitelist = fonts_whitelist;
   // Quill.register(Font, true)
 
+
+
   const modules = {
     toolbar: [
       [{ header: "1" }, { header: "2" }, { header: "3" }, { font: [] }],
@@ -140,7 +139,6 @@ export default function Blog() {
     },
   };
 
-  // const formats = ["color"]
 
   return (
     <>
@@ -174,41 +172,58 @@ export default function Blog() {
                 <br />
                 <br />
                 <div className="bg-white container">
+
+
+                  { userIsAuthor ?
+
+                    <QuillNoSSRWrapper
+                      modules={modules}
+                      onChange={setContent}
+                      theme="snow"
+                      className=" min-h-[15vh] h-[60vh]"
+                      value={content}
+                      placeholder="Write your post here..."
+                    />
+                  
+                    :
+                    
+                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(content)}}/>
+
+                  }
                   {/* https://quilljs.com/docs/api/ */}
-                  {/* <QuillNoSSRWrapper
-                    modules={modules}
-                    onChange={setContent}
-                    theme="snow"
-                    className=" min-h-[15vh] h-[60vh]"
-                    value={content}
-                    placeholder="Write your post here..."
-                  />
-                </div> */}
                 {/* parse(content) */}
-                {parse(`${content}`) + "parse" }
-
-                <div dangerouslySetInnerHTML={{__html: dompurify.sanitize(content)}}>
+                {/* {parse(`${content}`) + "parse" } */}
 
 
+                
 
-                </div>
-                 <p>dompurify is second</p> 
+
+
+                 
               </div>
               </div>
+              
             </form>
-            <button
-              className="p-2 m-4 fw-bold bg-blue-600 rounded"
-              onClick={updateData}
-            >
-              Update
-            </button>
-            <button
-              className="p-2 m-4 fw-bold bg-red-600 rounded"
-              onClick={deletePost}
-            >
-              DELETE
-            </button>
+
+            {
+              userIsAuthor?
+              <>
+                <button
+                  className="p-2 m-4 fw-bold bg-blue-600 rounded"
+                  onClick={updateData}
+                >
+                  Update
+                </button>
+                <button
+                  className="p-2 m-4 fw-bold bg-red-600 rounded"
+                  onClick={deletePost}
+                >
+                  DELETE
+                </button>
+            </>
             :
+              ""
+          }
             <button href="/login" className="">
               <Link href="/login">LOGIN TO POST AS YOURSELF</Link>
             </button>
@@ -221,7 +236,7 @@ export default function Blog() {
         <details>
           <summary className="fw-bold"> SHOW HTML VALUES FOR DATABASE</summary>
 
-          {/* <p>Body: {content}</p> */}
+          <p>Body: {content}</p>
 
           <p>Title: {title}</p>
           <p>Subtitle: {subtitle}</p>
