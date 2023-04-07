@@ -11,10 +11,10 @@ const PostPreview = (props) => {
                             <h2 className="post-title text-decoration-none text-center text-wrap text-break mb-4">{title}</h2>
                             <h5 className="post-subtitle text-center fw-light text-wrap text-break mb-2">{subtitle}</h5>
                         </Link>
-                        <p className="post-meta text-wrap text-break text-center">
-                            Posted by &nbsp;
-                            <Link href={`blogs/${slug}`}>{author}</Link>
-                            &nbsp; on September 24, 2022
+                        <p className="post-meta text-wrap text-break text-center text-muted">
+                            Posted by&nbsp;
+                            <span className='fw-bold text-dark'>{author}</span>
+                            &nbsp;on September 24, 2022
                         </p>
                     </div>
                   

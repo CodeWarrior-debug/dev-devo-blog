@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer";
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import Heading from "@/components/Heading";
@@ -38,9 +37,10 @@ export default function Home() {
       </Head>
       <Navbar />
       <Heading />
+      <h1 className="text-center m-3 text-primary">Latest 5 Posts</h1>
       <PostPreviews allBlogs={blogs} />
 
-      <Footer />
+      
     </>
   );
 }

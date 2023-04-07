@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer";
+
 import Navbar from "@/components/Navbar";
 import PostPreviews from "@/components/PostPreviews";
 import { useEffect, useState } from "react";
@@ -26,7 +26,7 @@ export default function AllBlogs() {
         <div className="container position-relative pt-5">
         <div className="text-black flex flex-col justify-start items-center min-h-screen bg-[#0C3BAA] p-[1em] w-full"></div>
       <PostPreviews allBlogs={blogs} />
-      <Footer />
+      
       </div>
       </div>
     </>

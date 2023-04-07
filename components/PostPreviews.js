@@ -1,10 +1,6 @@
 import PostPreview from "./PostPreview";
 
 const PostPreviews = ({allBlogs}) => {
-// const [demoPosts,setDemoPosts] = useState([])
-
-
-
 
   return (
     <>
@@ -19,10 +15,10 @@ const PostPreviews = ({allBlogs}) => {
                   subtitle={item.subtitle}
                   slug={item.url}
                   author={item.author}
+                  
                 />
               );
             })}
-
 
           </div>
         </div>

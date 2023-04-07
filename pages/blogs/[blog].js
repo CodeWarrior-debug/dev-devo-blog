@@ -12,12 +12,9 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   loading: () => <p>Loading ...</p>,
 });
 
-// const DOMpurify = require('dompurify')(window)
 export default function Blog() {
-  
-  
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("<h1>parse WORKS!!</h1>");
+  const [content, setContent] = useState("<p>Loading...</p>");
   const [author, setAuthor] = useState("ANONYMOUS");
   const [subtitle, setSubtitle] = useState("");
   const [createddateTime, setCreatedDateTime] = useState("");
@@ -39,15 +36,16 @@ export default function Blog() {
 
     setUrl(data.url);
     setTitle(data.title);
-    // setContent(data.postBody);
     setContent(data.postBody);
     setSubtitle(data.subtitle);
     setUpdatedDateTime(new Date().toDateString());
     setAuthor(data.author);
-    setCreatedDateTime(new Date(Date.parse(data.createddateTime)).toDateString());
-    const splitter = router.query.blog.split("-")
-  
-    setIdNum (splitter[splitter.length-1])
+    setCreatedDateTime(
+      new Date(Date.parse(data.createddateTime)).toDateString()
+    );
+    const splitter = router.query.blog.split("-");
+
+    setIdNum(splitter[splitter.length - 1]);
   };
 
   const callData = async () => {
@@ -82,13 +80,11 @@ export default function Blog() {
     },
   };
 
-
   const updateData = async () => {
-    
     const response = await fetch("../api/updatePost", options);
     const data = await response.json();
-    if(data){
-      router.push("/blogs")
+    if (data) {
+      router.push("/blogs");
     }
   };
 
@@ -108,7 +104,6 @@ export default function Blog() {
     setSubtitle(event.target.value);
   }
   // React Quill settings
-
   // Trying to get different quill fonts to work
 
   // const Quill = ReactQuill.Quill
@@ -116,8 +111,6 @@ export default function Blog() {
   // const fonts_whitelist = ['Ubuntu', 'Raleway', 'Roboto']
   // Font.whitelist = fonts_whitelist;
   // Quill.register(Font, true)
-
-
 
   const modules = {
     toolbar: [
@@ -139,43 +132,49 @@ export default function Blog() {
     },
   };
 
-
   return (
     <>
       <Navbar />
-      <div className="container position-relative mt-5 pt-3">
-        <div className="container position-relative pt-5">
-          <div className="text-black flex flex-col justify-start items-center min-h-screen bg-[#0C3BAA] p-[1em] w-full">
+      <div className="position-relative mt-3 pt-5 bg-secondary">
+        <div className="container position-relative pt-5 bg-secondary">
+          <div className="text-black flex flex-col justify-start items-center min-h-screen  p-[1em] w-full rounded">
             <form className="min-w-[16em] w-4/5 border-none ">
               <div className="bg-white h-[70vh]">
-                <input
-                  type="text"
-                  value={title}
-                  name="title"
-                  placeholder="Enter a title"
-                  onChange={handleTitleChange}
-                  required
-                  className="mr-4"
-                />
-                <span className="pl-4 ">{title}</span>
-                <br />
-                <input
-                  type="text"
-                  value={subtitle}
-                  name="title"
-                  placeholder="Enter a subtitle"
-                  onChange={handleSubTitleChange}
-                  required
-                  className="mr-4"
-                />
-                <span className="pl-4 ">{subtitle}</span>
-                <br />
-                <br />
-                <div className="bg-white container">
+                {userIsAuthor ? (
+                  <>
+                    <input
+                      type="text"
+                      value={title}
+                      name="title"
+                      placeholder="Enter a title"
+                      onChange={handleTitleChange}
+                      required
+                      className="mr-4"
+                    />
+                    <span className="pl-4 ">{title}</span>
+                    <br />
+                    <input
+                      type="text"
+                      value={subtitle}
+                      name="title"
+                      placeholder="Enter a subtitle"
+                      onChange={handleSubTitleChange}
+                      required
+                      className="mr-4"
+                    />
+                    <span className="pl-4 ">{subtitle}</span>
+                    <br />
+                    <br />
+                  </>
+                ) : (
+                  <>
+                    <h1 className="text-center">{title}</h1>
+                    <h4 className="text-center text-muted">{subtitle}</h4>
+                  </>
+                )}
 
-
-                  { userIsAuthor ?
-
+                <div className="bg-white container border border-muted rounded-3 p-3 border-3">
+                  {userIsAuthor ? (
                     <QuillNoSSRWrapper
                       modules={modules}
                       onChange={setContent}
@@ -184,29 +183,19 @@ export default function Blog() {
                       value={content}
                       placeholder="Write your post here..."
                     />
-                  
-                    :
-                    
-                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(content)}}/>
-
-                  }
+                  ) : (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(content),
+                      }}
+                    />
+                  )}
                   {/* https://quilljs.com/docs/api/ */}
-                {/* parse(content) */}
-                {/* {parse(`${content}`) + "parse" } */}
-
-
-                
-
-
-
-                 
+                </div>
               </div>
-              </div>
-              
             </form>
 
-            {
-              userIsAuthor?
+            {userIsAuthor ? (
               <>
                 <button
                   className="p-2 m-4 fw-bold bg-blue-600 rounded"
@@ -220,18 +209,17 @@ export default function Blog() {
                 >
                   DELETE
                 </button>
-            </>
-            :
+              </>
+            ) : (
               ""
-          }
-            
-              <Link href="/login">LOGIN TO POST AS YOURSELF</Link>
-            
-            {/* Temporary */}
-            {/* <button className="p-2 m-4 fw-bold bg-blue-600 rounded ">Submit</button> */}
+            )}
+
+            <Link className="text-center" href="/login">
+              <p className="m-5">LOGIN TO POST AS YOURSELF</p>
+            </Link>
           </div>
         </div>
-        </div>
+      </div>
       <div className="container">
         <details>
           <summary className="fw-bold"> SHOW HTML VALUES FOR DATABASE</summary>
@@ -246,7 +234,6 @@ export default function Blog() {
           </p>
 
           <p>URL Slug: {url}</p>
-
         </details>
       </div>
     </>

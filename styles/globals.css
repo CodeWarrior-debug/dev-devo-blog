@@ -10,7 +10,6 @@
   }
 
 
-  img:hover, h1:hover, a:hover{
+  .scale img:hover, .scale div:hover, .scale h1:hover, .scale p:hover, .scale a:hover{
     scale: 1.1;
-    
   }
