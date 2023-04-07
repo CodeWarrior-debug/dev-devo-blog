@@ -5,6 +5,7 @@ import "react-quill/dist/quill.snow.css";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar";
+import parse from 'html-react-parser'
 
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
@@ -16,7 +17,7 @@ export default function Blog() {
 
   
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState("<h1>parse WORKS!!</h1>");
   const [author, setAuthor] = useState("ANONYMOUS");
   const [subtitle, setSubtitle] = useState("");
   const [createddateTime, setCreatedDateTime] = useState("");
@@ -36,7 +37,9 @@ export default function Blog() {
     const data = await response.json();
 
     setUrl(data.url);
-    setTitle(data.title), setContent(data.postBody);
+    setTitle(data.title);
+    // setContent(data.postBody);
+    setContent(data.postBody);
     setSubtitle(data.subtitle);
     setUpdatedDateTime(new Date().toDateString());
     setAuthor(data.author);
@@ -168,7 +171,7 @@ export default function Blog() {
                 <br />
                 <div className="bg-white container">
                   {/* https://quilljs.com/docs/api/ */}
-                  <QuillNoSSRWrapper
+                  {/* <QuillNoSSRWrapper
                     modules={modules}
                     onChange={setContent}
                     theme="snow"
@@ -176,7 +179,10 @@ export default function Blog() {
                     value={content}
                     placeholder="Write your post here..."
                   />
-                </div>
+                </div> */}
+                {/* parse(content) */}
+                {parse(`${content}`)}
+              </div>
               </div>
             </form>
             <button
@@ -204,7 +210,7 @@ export default function Blog() {
         <details>
           <summary className="fw-bold"> SHOW HTML VALUES FOR DATABASE</summary>
 
-          <p>Body: {content}</p>
+          {/* <p>Body: {content}</p> */}
 
           <p>Title: {title}</p>
           <p>Subtitle: {subtitle}</p>
