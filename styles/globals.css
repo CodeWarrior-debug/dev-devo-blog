@@ -8,3 +8,9 @@
   .ql-font span[data-label="Roboto"]::before {
     font-family: "Roboto";
   }
+
+
+  img:hover, h1:hover, a:hover{
+    scale: 1.1;
+    
+  }
