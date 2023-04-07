@@ -5,7 +5,7 @@ const PostPreview = (props) => {
     const {title, subtitle,slug, author} = props;
   return (
     <>
-                                        {/* Divider */}
+                  
                           <div className="post-preview">
                         <Link href={`blogs/${slug}`} className="text-decoration-none text-dark text-break">
                             <h2 className="post-title text-decoration-none text-center text-wrap text-break mb-4">{title}</h2>
@@ -17,8 +17,8 @@ const PostPreview = (props) => {
                             &nbsp; on September 24, 2022
                         </p>
                     </div>
-                                        {/* Divider */}
-                                        <hr className="my-4" />
+                  
+                  <hr className="my-4" />
     </>
   )
 }

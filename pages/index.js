@@ -9,16 +9,20 @@ export default function Home() {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    const getFBDocs = async () => {
-      const res = await fetch("./api/readPosts");
-      const data = await res.json();
+    const get5Docs = async()=>{
 
-      setBlogs(data);
+      const getFBDocs = async () => {
+        const res = await fetch("./api/read5Posts");
+        const data = await res.json();
+  
+        setBlogs(data);
+    }
+    
+    await getFBDocs();
     };
 
-    getFBDocs();
-
-    // console.log("blogs", blogs)
+  get5Docs()
+    console.log("blogs", blogs)
   }, []);
 
   return (

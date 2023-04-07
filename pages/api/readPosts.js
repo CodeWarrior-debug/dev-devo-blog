@@ -7,25 +7,36 @@ import { db } from "../../lib/firesStoreRef";
 export default async function handler(req, res) {
   try {
     const getPosts = async () => {
-      const querySnapshot = await getDocs(collection(db, "posts"));
-
+      
       let allDocs = [];
 
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        allDocs.push(doc.data());
-      });
+      
+      const buildPosts = async ()=>{
 
-      allDocs.sort((a, b) => parseInt(a.idNum) - parseInt(b.idNum));
+        const querySnapshot = await getDocs(collection(db, "posts"));
 
-      await json(allDocs);
-      res.send(200);
+         querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          allDocs.push(doc.data());
+        });
+  
+        allDocs.sort((a, b) => parseInt(a.idNum) - parseInt(b.idNum));
+      }
 
+      await buildPosts()
+      
       // console.log("alldocs: ",allDocs)
-    };
+      // res.json(allDocs)
 
-await getPosts();
-  } catch (err) {
-    res.json(err);
+      res.status(200)
+      res.end(JSON.stringify(allDocs));
+      // res.end(JSON.stringify(allDocs));
+    };
+  
+    await getPosts();
+
+  } catch (error) {
+    res.json(error);
+    res.status(405).end();
   }
 }
