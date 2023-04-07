@@ -12,5 +12,8 @@
 
   img:hover, h1:hover, a:hover{
     scale: 1.1;
-    
+  }
+
+  .noScale img:hover, .noScale h1:hover, .noScale a:hover{
+    scale:1;
   }

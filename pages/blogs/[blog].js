@@ -5,7 +5,11 @@ import "react-quill/dist/quill.snow.css";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar";
+import { Montserrat, Alegreya } from "next/font/google";
+import cls from "classnames"
 
+const alegreya = Alegreya({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -23,6 +27,7 @@ export default function Blog() {
   const [updateddateTime, setUpdatedDateTime] = useState("");
   const [url, setUrl] = useState("");
   const [idNum, setIdNum] = useState("");
+  const [userIsAuthor, setUserIsAuthor] = useState(false);
 
   const router = useRouter();
 
@@ -138,10 +143,18 @@ export default function Blog() {
   return (
     <>
       <Navbar />
+
+    {/* if user matches author - show editor..otherwise just show post */}
+
+
       <div className="container position-relative mt-5 pt-3">
         <div className="container position-relative pt-5">
           <div className="text-black flex flex-col justify-start items-center min-h-screen bg-[#0C3BAA] p-[1em] w-full">
-            <form className="min-w-[16em] w-4/5 border-none ">
+{
+  userIsAuthor ? 
+           (
+           <>
+           <form className="min-w-[16em] w-4/5 border-none ">
               <div className="bg-white h-[70vh]">
                 <input
                   type="text"
@@ -150,7 +163,7 @@ export default function Blog() {
                   placeholder="Enter a title"
                   onChange={handleTitleChange}
                   required
-                  className="mr-4"
+                  className={ cls(alegreya.className, "mr-4 noScale")}
                 />
                 <span className="pl-4 ">{title}</span>
                 <br />
@@ -191,13 +204,32 @@ export default function Blog() {
             >
               DELETE
             </button>
-            :
-            <button href="/login" className="">
-              <Link href="/login">LOGIN TO POST AS YOURSELF</Link>
-            </button>
-            {/* Temporary */}
-            {/* <button className="p-2 m-4 fw-bold bg-blue-600 rounded ">Submit</button> */}
-          </div>
+                        </>
+            )
+
+:
+
+    ( 
+      <>
+    <h1 className=" text-center m-2">{title}</h1>
+    <h2 className="text-center text-muted mb-2">{subtitle}</h2>
+
+    <div dangerouslySetInnerHTML={{__html: `${content}`}} className="m-5 p-5" />
+
+
+
+
+    </>
+
+
+    )
+    }
+
+
+
+  <Link href="/login">LOGIN TO POST, EDIT, OR DELETE YOUR DOCS</Link>
+
+</div>
         </div>
         </div>
       <div className="container">
