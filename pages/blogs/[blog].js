@@ -200,29 +200,7 @@ export default function Blog() {
             {/* <button className="p-2 m-4 fw-bold bg-blue-600 rounded ">Submit</button> */}
           </div>
         </div>
-        <div className="container">
-          <details>
-            <summary className="fw-bold">
-              {" "}
-              SHOW HTML VALUES FOR DATABASE
-            </summary>
-
-            <p>Body: {content}</p>
-
-            <p>Title: {title}</p>
-            <p>Subtitle: {subtitle}</p>
-            <p>By: {author}</p>
-            <p>
-              Created: {createddateTime}, Updated: {updateddateTime}
-            </p>
-
-            <p>URL Slug: {url}</p>
-            {/* <p>Tags: {tagsArr}</p> */}
-
-            {/* <p>Comments: {commentsArr}</p> */}
-          </details>
         </div>
-      </div>
       <div className="container">
         <details>
           <summary className="fw-bold"> SHOW HTML VALUES FOR DATABASE</summary>
