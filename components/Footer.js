@@ -1,6 +1,7 @@
 import React from 'react'
 
-// import { } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { faHome,faRetweet, faCircle} from '@fortawesome/free-solid-svg-icons'
 
 const Footer = () => {
   return (
@@ -8,7 +9,10 @@ const Footer = () => {
               {/* TODO: Refactor this to kill bad links... */}
         <footer className="border-top">
             {/* <FaSymbol/> */}
-
+            {/* <FaSymbol/> */}
+            <FontAwesomeIcon icon={faHome}/>
+            <FontAwesomeIcon icon={faRetweet}/>
+            <FontAwesomeIcon icon={faCircle}/>
             <div className="container px-4 px-lg-5">
                 <div className="row gx-4 gx-lg-5 justify-content-center">
                     <div className="col-md-10 col-lg-8 col-xl-7">
