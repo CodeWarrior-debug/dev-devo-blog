@@ -224,9 +224,9 @@ export default function Blog() {
             :
               ""
           }
-            <button href="/login" className="">
+            
               <Link href="/login">LOGIN TO POST AS YOURSELF</Link>
-            </button>
+            
             {/* Temporary */}
             {/* <button className="p-2 m-4 fw-bold bg-blue-600 rounded ">Submit</button> */}
           </div>
