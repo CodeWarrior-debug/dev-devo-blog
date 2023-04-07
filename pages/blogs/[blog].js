@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar";
 import parse from 'html-react-parser'
+import DOMpurify from 'dompurify'
+
 
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
@@ -13,8 +15,10 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   loading: () => <p>Loading ...</p>,
 });
 
+// const DOMpurify = require('dompurify')(window)
 export default function Blog() {
-
+  
+  const dompurify=DOMpurify
   
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("<h1>parse WORKS!!</h1>");
@@ -181,7 +185,14 @@ export default function Blog() {
                   />
                 </div> */}
                 {/* parse(content) */}
-                {parse(`${content}`)}
+                {parse(`${content}`) + "parse" }
+
+                <div dangerouslySetInnerHTML={{__html: dompurify.sanitize(content)}}>
+
+
+
+                </div>
+                 <p>dompurify is second</p> 
               </div>
               </div>
             </form>
