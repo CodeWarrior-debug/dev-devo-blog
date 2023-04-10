@@ -2,7 +2,7 @@ import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import Heading from "@/components/Heading";
 import PostPreviews from "@/components/PostPreviews";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
   const [blogs, setBlogs] = useState([]);

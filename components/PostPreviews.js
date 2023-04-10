@@ -1,4 +1,6 @@
+
 import PostPreview from "./PostPreview";
+import React  from "react";
 
 const PostPreviews = ({allBlogs}) => {
 

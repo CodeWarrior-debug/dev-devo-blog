@@ -4,7 +4,7 @@ import slugify from "slugify";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useEffect } from "react";
 import { db } from "@/lib/firesStoreRef";

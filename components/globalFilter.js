@@ -1,4 +1,4 @@
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import { useAsyncDebounce } from "react-table";
 // import tw from "twin.macro"
 import 'regenerator-runtime/runtime'
