@@ -1,15 +1,15 @@
-.search-table table {
+.searchTable table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-.search-table td,
-.search-table th {
+.searchTable td,
+.searchTable th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
 }
-.search-table tr:nth-child(even) {
-    background-color: #dddddd;
+.searchTable tr:nth-child(even) {
+    background-color: #302b2b;
 }
