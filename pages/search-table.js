@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-key */
-import React, { useEffect } from 'react'
-// import fakeData from "../lib/MOCK_DATA.json"
+import React, { useEffect, useState, useMemo } from 'react'
 import blogsData from "../lib/blogsData.json"
 import { useGlobalFilter, useTable } from 'react-table'
 import "../styles/search-table.module.css"
@@ -8,10 +7,24 @@ import "../styles/search-table.module.css"
 
 const ReactTable = () =>{
 
+  const [data, setData] = useState([])
   // RESOURCE: https://github.com/machadop1407/react-table-tutorial
   // https://hygraph.com/blog/react-table
 
-const data = React.useMemo(() => blogsData, []);
+  useEffect(()=>{
+
+    const getFBData = async ()=>{
+      const res = await fetch("./api/readPosts")
+      const data = await res.json()
+      setData(data)
+    }
+
+    getFBData()
+
+  })
+
+
+
 const columns = React.useMemo(
   () => [
     {
@@ -42,7 +55,7 @@ const columns = React.useMemo(
   []
 );
 
-const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+const { getTableProps, getTableBodyProps, headerGroups, rows, state, setGlobalFilter, prepareRow } =
   useTable({ columns, data }, useGlobalFilter);
 
 return (
