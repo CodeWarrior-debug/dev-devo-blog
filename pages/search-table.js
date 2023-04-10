@@ -2,12 +2,14 @@
 import React, { useEffect } from 'react'
 // import fakeData from "../lib/MOCK_DATA.json"
 import blogsData from "../lib/blogsData.json"
-import { useTable } from 'react-table'
+import { useGlobalFilter, useTable } from 'react-table'
+import "../styles/search-table.module.css"
 
 
 const ReactTable = () =>{
 
   // RESOURCE: https://github.com/machadop1407/react-table-tutorial
+  // https://hygraph.com/blog/react-table
 
 const data = React.useMemo(() => blogsData, []);
 const columns = React.useMemo(
@@ -41,10 +43,10 @@ const columns = React.useMemo(
 );
 
 const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-  useTable({ columns, data });
+  useTable({ columns, data }, useGlobalFilter);
 
 return (
-  <div className="App">
+  <div className="search-table">
     <div className="container">
       <table {...getTableProps()}>
         <thead>
@@ -53,7 +55,6 @@ return (
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps()}>
                   {column.render("Header")}
-                  {/* {column.render("Cell")} */}
                 </th>
               ))}
             </tr>
