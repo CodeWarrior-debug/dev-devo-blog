@@ -36,9 +36,7 @@ export default function handler(req, res) {
 
     const addPost = async () => {
       
-
       await setDoc(doc(db, "posts", idNum.toString()), newPost);
-
 
     };
 
