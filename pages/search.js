@@ -54,7 +54,7 @@ const columns = React.useMemo(
       accessor: "url",
       // Custom cell configuration here, or can be applied from another component, see Genres example at https://blog.logrocket.com/react-table-complete-guide/#custom-styling-react-table
       // Cell method will provide the cell value; we pass it to render a custom component
-      Cell: ({ cell: { value } }) => <Link href="/blogs">{value}</Link>,
+      Cell: ({ cell: { value } }) => <Link href={`blogs/${value}`}>{value}</Link>,
       Filter: FilterForm,
 
     },
@@ -69,11 +69,11 @@ const columns = React.useMemo(
       accessor: "author",
       Filter: FilterForm,
     },
-    {
-      Header: "Date Created",
-      accessor: "createddateTime",
-      Filter: FilterForm,
-    },
+    // {
+    //   Header: "Date Created",
+    //   accessor: "createddateTime",
+    //   Filter: FilterForm,
+    // },
   ],
   []
 );
