@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState, useMemo } from 'react'
-import { useTable, useFilters, useSortBy} from 'react-table'
+import { useTable, useFilters, useSortBy, useGlobalFilter} from 'react-table'
 // import '../styles/searchtable.module.css'
-import {Table, Row} from 'react-bootstrap'
-// import FilterForm from '@/components/FilterForm'
+import {Table} from 'react-bootstrap'
+
 import { GlobalFilter } from '@/components/globalFilter'
 
 const ReactTable = () =>{
@@ -11,7 +11,7 @@ const ReactTable = () =>{
   const [data, setData] = useState([])
   // RESOURCE: https://github.com/machadop1407/react-table-tutorial
   // https://hygraph.com/blog/react-table
-  // https://www.youtube.com/watch?v=WRKEjPq75BY
+  // https://www.youtube.com/watch?v=WRKEjPq75BY  BEST ONE
 
   useEffect(()=>{
 
@@ -65,16 +65,16 @@ const columns = React.useMemo(
 
 // const { getTableProps, getTableBodyProps, headerGroups, rows, state, prepareRow } =
 //   useTable({ columns, data }, useFilters);
-const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-  useTable({ columns, data }, useSortBy);
+const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, preGlobalFilteredRows, setGlobalFilter,state } =
+  useTable({ columns, data }, useGlobalFilter, useSortBy);
 
 
 
 
 return (
   <div>
-    {/* <FilterForm/> */}
-    <GlobalFilter/>
+    
+    <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows} globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter} />
   <Table className='searchTable' {...getTableProps()}>
       <thead className='searchTable'>
           {headerGroups.map((headerGroup) => (
