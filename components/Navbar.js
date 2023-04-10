@@ -16,6 +16,7 @@ const Navbar = () => {
                     <ul className="py-4 navbar-nav ms-auto py-lg-0">
                         <li className="nav-item scale"><Link className="py-3 nav-link px-lg-3 py-lg-4 fs-3" href="/compose">Compose</Link></li>
                         <li className="nav-item scale"><Link className="py-3 nav-link px-lg-3 py-lg-4 fs-3" href="/blogs">Posts</Link></li>
+                        <li className="nav-item scale"><Link className="py-3 nav-link px-lg-3 py-lg-4 fs-3" href="/search">Search</Link></li>
                         <li className="nav-item scale"><Link className="py-3 nav-link px-lg-3 py-lg-4 fs-3" href="/login">Login</Link></li>
                     </ul>
                 </div>
