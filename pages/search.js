@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-key */
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTable, useFilters, useSortBy, useGlobalFilter} from 'react-table'
 // import '../styles/searchtable.module.css'
 import {Table} from 'react-bootstrap'
-
+import Navbar from '@/components/Navbar'
 import { GlobalFilter } from '@/components/globalFilter'
+import FilterForm from '@/components/FilterForm'
 
 const ReactTable = () =>{
 
@@ -30,49 +31,52 @@ const ReactTable = () =>{
 const columns = React.useMemo(
   () => [
     {
-      Header: "Title",
-      accessor: "title",
-      // Filter: FilterForm,
-    },
-    {
       Header: "ID",
       accessor: "idNum",
-      // Filter: FilterForm,
+      disableFilters:true,
+    },
+    {
+      Header: "Post Title" ,
+      accessor: "title",
+      Filter: FilterForm,
     },
     {
       Header: "Date Updated",
       accessor: "updateddateTime",
-      // Filter: FilterForm,
+      Filter: FilterForm,
     },
     {
       Header: "URL End",
       accessor: "url",
-      // Filter: FilterForm,
+      Filter: FilterForm,
     },
     {
       Header: "Author",
       accessor: "author",
-      // Filter: FilterForm,
+      Filter: FilterForm,
     },
     {
       Header: "Date Created",
       accessor: "createddateTime",
-      // Filter: FilterForm,
+      Filter: FilterForm,
     },
   ],
   []
 );
 
-// const { getTableProps, getTableBodyProps, headerGroups, rows, state, prepareRow } =
-//   useTable({ columns, data }, useFilters);
+
 const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, preGlobalFilteredRows, setGlobalFilter,state } =
-  useTable({ columns, data }, useGlobalFilter, useSortBy);
+  useTable({ columns, data }, useFilters, useGlobalFilter, useSortBy);
+  // useTable({ columns, data }, useFilters);
 
 
 
 
 return (
-  <div>
+  <>
+  <Navbar/>
+  <div className="container position-relative mt-5 pt-3">
+        <div className="container position-relative pt-5">
     
     <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows} globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter} />
   <Table className='searchTable' {...getTableProps()}>
@@ -83,6 +87,11 @@ return (
                       <th  className='searchTable' {...column.getHeaderProps(column.getSortByToggleProps())}>
                           {column.render('Header')}
                           {column.isSorted ? (column.isSortedDesc ? "⬇️" : "⬆️") :""}
+                          {column.canFilter ? column.render('Filter') : null}
+
+                          {/* <div>
+                                        {column.canFilter ? column.render('Filter') : null}
+                                    </div> */}
                       </th>
                   ))}
               </tr>
@@ -106,7 +115,8 @@ return (
       </tbody>
   </Table>
 </div>
-
+</div>
+</>
 );
 }
 
