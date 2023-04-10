@@ -1,11 +1,13 @@
 
 /* eslint-disable react/jsx-key */
-import { Filter } from "@/components/Filters";
+import { Filter, DefaultColumnFilter,SelectColumnFilter } from "@/components/Filters";
 import React, { useEffect, useState } from "react";
 import { useTable, useSortBy,useFilters } from "react-table";
-import { Table } from "react-bootstrap";
+// import { Table } from "react-bootstrap";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import Container from 'react-bootstrap'
+import TableContainer from "@/components/TableContainer";
 
 // TODO: Add custom link cell
 
@@ -28,11 +30,6 @@ const ReactTable = () => {
 
     getFBdocs();
   }, []);
-
-  
-const generateSortingIndicator = column => {
-  return column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""
-}
 
 
   const columns = React.useMemo(
@@ -71,43 +68,18 @@ const generateSortingIndicator = column => {
     []
   );
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data: blogsData }, useSortBy);
+  // const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+  //   useTable({ columns, data: blogsData }, useFilters, useSortBy);
+    
 
   return (
     <>
       <Navbar />
       <div className="container position-relative mt-5 pt-3">
         <div className="container position-relative mt-5">
-          <Table bordered hover {...getTableProps()}>
-            <thead className="bg-dark text-white">
-              {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
-                    <th {...column.getHeaderProps()}>
-                      <div {...column.getSortByToggleProps()}>
-                        {column.render("Header")}
-                        {generateSortingIndicator(column)}
-                      </div>
-                    <Filter column={column} />
-                  </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <tbody className="fw-bold" {...getTableBodyProps()}>
-              {rows.map((row) => {
-                prepareRow(row);
-                return (
-                  <tr {...row.getRowProps()}>
-                    {row.cells.map((cell) => (
-                      <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
-                    ))}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
+         <Container>
+          <TableContainer  columns={columns} data={blogsData}/>
+         </Container>
         </div>
       </div>
     </>
