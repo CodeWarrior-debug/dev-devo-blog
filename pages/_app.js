@@ -5,11 +5,11 @@ import "../styles/globals.css"
 import "@fortawesome/fontawesome-svg-core/styles.css"; 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Head from "next/head"
-import { useEffect } from "react";
-import {Playfair_Display} from "next/font/google"
+import React, { useEffect } from "react";
+// import {Playfair_Display} from "next/font/google"
 import cls from 'classnames'
 
-const play_fair_display = Playfair_Display({subsets:['cyrillic']}, {style:"normal"})
+// const play_fair_display = Playfair_Display({subsets:['cyrillic']}, {style:"normal"})
 
 
 
@@ -27,7 +27,8 @@ export default function App({ Component, pageProps }) {
 <Head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 </Head>
-<main className={cls(play_fair_display.className)}>
+{/* <main className={cls(play_fair_display.className)}> */}
+<main>
 
 <Component {...pageProps} />
 </main>

@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState, useMemo } from 'react'
 import { useTable, useFilters, useSortBy} from 'react-table'
-import '../styles/searchtable.module.css'
+// import '../styles/searchtable.module.css'
+import {Table, Row} from 'react-bootstrap'
 // import FilterForm from '@/components/FilterForm'
-
+import { GlobalFilter } from '@/components/globalFilter'
 
 const ReactTable = () =>{
 
@@ -73,7 +74,8 @@ const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
 return (
   <div>
     {/* <FilterForm/> */}
-  <table className='searchTable' {...getTableProps()}>
+    <GlobalFilter/>
+  <Table className='searchTable' {...getTableProps()}>
       <thead className='searchTable'>
           {headerGroups.map((headerGroup) => (
               <tr className='searchTable' {...headerGroup.getHeaderGroupProps()}>
@@ -102,7 +104,7 @@ return (
               );
           })}
       </tbody>
-  </table>
+  </Table>
 </div>
 
 );
