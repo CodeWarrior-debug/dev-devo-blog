@@ -50,7 +50,7 @@ const columns = React.useMemo(
       Filter: FilterForm,
     },
     {
-      Header: "Link",
+      Header: "Link To Post",
       accessor: "url",
       // Custom cell configuration here, or can be applied from another component, see Genres example at https://blog.logrocket.com/react-table-complete-guide/#custom-styling-react-table
       // Cell method will provide the cell value; we pass it to render a custom component
