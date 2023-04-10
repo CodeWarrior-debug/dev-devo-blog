@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-key */
 
-import Table from 'react-bootstrap'
-import React from "react"
-import { useFilters, useSortBy, useTable } from "react-table"
-import { Filter, DefaultColumnFilter, SelectColumnFilter} from "./Filters"
+import React from 'react';
+import { useTable, useSortBy } from 'react-table';
+import { Table } from 'react-bootstrap';
 
 const TableContainer = ({ columns, data }) => {
   const {
@@ -14,18 +13,15 @@ const TableContainer = ({ columns, data }) => {
     prepareRow,
   } = useTable(
     {
-    columns,
-    data,
-    defaultColumn:{Filter: DefaultColumnFilter}
-  },
-  useFilters,
-  useSortBy
-  )
+      columns,
+      data,
+    },
+    useSortBy
+  );
 
   const generateSortingIndicator = (column) => {
     return column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : '';
   };
-
 
   return (
     <Table bordered hover {...getTableProps()}>
@@ -33,12 +29,9 @@ const TableContainer = ({ columns, data }) => {
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>
-                <div {...column.getSortByToggleProps()}>
-                  {column.render('Header')}
-                  {generateSortingIndicator(column)}
-                </div>
-                <Filter column={column} />
+              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                {column.render('Header')}
+                {generateSortingIndicator(column)}
               </th>
             ))}
           </tr>
@@ -61,4 +54,4 @@ const TableContainer = ({ columns, data }) => {
   );
 };
 
-export default TableContainer
+export default TableContainer;

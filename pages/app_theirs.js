@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Container } from 'react-bootstrap';
 import TableContainer from '../components/TableContainer';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   const [data, setData] = useState([]);
