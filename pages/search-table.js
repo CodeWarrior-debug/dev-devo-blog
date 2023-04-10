@@ -22,7 +22,7 @@ const ReactTable = () =>{
 
     getFBData()
 
-  })
+  },[])
 
 
 
@@ -64,7 +64,7 @@ const columns = React.useMemo(
 
 // const { getTableProps, getTableBodyProps, headerGroups, rows, state, prepareRow } =
 //   useTable({ columns, data }, useFilters);
-const { getTableProps, getTableBodyProps, headerGroups, rows, state, prepareRow } =
+const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
   useTable({ columns, data }, useSortBy);
 
 
@@ -81,9 +81,6 @@ return (
                       <th  className='searchTable' {...column.getHeaderProps(column.getSortByToggleProps())}>
                           {column.render('Header')}
                           {column.isSorted ? (column.isSortedDesc ? "⬇️" : "⬆️") :""}
-                          <div>
-                            {/* {column.canFilter ? column.render('Filter'):"none"} */}
-                          </div>
                       </th>
                   ))}
               </tr>
