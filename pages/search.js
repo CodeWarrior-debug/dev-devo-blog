@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useTable, useFilters, useSortBy, useGlobalFilter} from 'react-table'
 // import '../styles/searchtable.module.css'
+import Link from 'next/link'
 import {Table} from 'react-bootstrap'
 import Navbar from '@/components/Navbar'
 import { GlobalFilter } from '@/components/globalFilter'
@@ -28,6 +29,14 @@ const ReactTable = () =>{
 
 
 
+  // const CustomLink = ({value})=>{   
+  //       <Link href={`/blogs/${value}`}> 
+  //         {value}
+  //       </Link>
+    
+  // }
+
+
 const columns = React.useMemo(
   () => [
     {
@@ -41,15 +50,20 @@ const columns = React.useMemo(
       Filter: FilterForm,
     },
     {
+      Header: "Link",
+      accessor: "url",
+      // Custom cell configuration here, or can be applied from another component, see Genres example at https://blog.logrocket.com/react-table-complete-guide/#custom-styling-react-table
+      // Cell method will provide the cell value; we pass it to render a custom component
+      Cell: ({ cell: { value } }) => <Link href="/blogs">{value}</Link>,
+      Filter: FilterForm,
+
+    },
+    {
       Header: "Date Updated",
       accessor: "updateddateTime",
       Filter: FilterForm,
     },
-    {
-      Header: "URL End",
-      accessor: "url",
-      Filter: FilterForm,
-    },
+
     {
       Header: "Author",
       accessor: "author",
