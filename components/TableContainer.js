@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-key */
-
 import React from 'react';
-import { useTable, useSortBy } from 'react-table';
+import { useTable, useSortBy, useFilters } from 'react-table';
 import { Table } from 'react-bootstrap';
+import { Filter, DefaultColumnFilter } from './Filters';
 
 const TableContainer = ({ columns, data }) => {
   const {
@@ -15,7 +15,9 @@ const TableContainer = ({ columns, data }) => {
     {
       columns,
       data,
+      defaultColumn: { filter: DefaultColumnFilter },
     },
+    useFilters,
     useSortBy
   );
 
@@ -29,9 +31,12 @@ const TableContainer = ({ columns, data }) => {
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                {column.render('Header')}
-                {generateSortingIndicator(column)}
+              <th {...column.getHeaderProps()}>
+                <div {...column.getSortByToggleProps()}>
+                  {column.render('Header')}
+                  {generateSortingIndicator(column)}
+                </div>
+                <Filter column={column} />
               </th>
             ))}
           </tr>

@@ -4,7 +4,8 @@ import { Input, CustomInput } from 'react-bootstrap';
 export const Filter = ({ column }) => {
   return (
     <div style={{ marginTop: 5 }}>
-      {column.canFilter && column.render('Filter')}
+      {/* {column.canFilter ? column.render('Filter') : null} */}
+       { column.canFilter ? column.render('Filter'):null}
     </div>
   );
 };
@@ -13,16 +14,18 @@ export const DefaultColumnFilter = ({
   column: {
     filterValue,
     setFilter,
-    preFilteredRows: { length },
+    // preFilteredRows: { length },
+    preFilteredRows,
   },
 }) => {
+  const count = preFilteredRows.length
   return (
     <Input
       value={filterValue || ''}
       onChange={(e) => {
         setFilter(e.target.value || undefined);
       }}
-      placeholder={`search (${length}) ...`}
+      placeholder={`search (${count}) records...`}
     />
   );
 };

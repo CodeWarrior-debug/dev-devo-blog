@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Container } from 'react-bootstrap';
 import TableContainer from '../components/TableContainer';
+import { SelectColumnFilter } from '../components/Filters';
 
 const App = () => {
   const [data, setData] = useState([]);
+
+
   useEffect(() => {
     const doFetch = async () => {
       const response = await fetch('https://randomuser.me/api/?results=100');
@@ -20,7 +23,9 @@ const App = () => {
       {
         Header: 'Title',
         accessor: 'name.title',
-        disableSortBy: true,
+        // disableSortBy: true,
+        // Filter: SelectColumnFilter,
+        // filter: 'equals',  // by default, filter: 'text', but in our case we don't want to filter options like text, we want to find exact match of selected option.
       },
       {
         Header: 'First Name',
