@@ -11,10 +11,6 @@ export function GlobalFilter({
 }) {
 
 
-useEffect(()=>{
-    console.log("preGlobalFilteredRows",preGlobalFilteredRows)
-})
-
   const count = preGlobalFilteredRows.length;
   const [value, setValue] = useState(globalFilter);
   const onChange = useAsyncDebounce((value) => {
