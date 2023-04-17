@@ -134,7 +134,8 @@ export default function Blog() {
 
   return (
     <>
-      <Navbar />
+    
+      <Navbar/>
       <div className="position-relative mt-3 pt-5 bg-secondary">
         <div className="container position-relative pt-5 bg-secondary">
           <div className="text-black flex flex-col justify-start items-center min-h-screen  p-[1em] w-full rounded">

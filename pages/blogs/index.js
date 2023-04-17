@@ -1,7 +1,8 @@
 
-import Navbar from "../../components/Navbar"
+// import Navbar from "../../components/Navbar"
+import Navbar from "../../components/Navbar.ts"
 import PostPreviews from "../../components/PostPreviews";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 
 export default function AllBlogs() {
   const [blogs, setBlogs] = useState([]);
