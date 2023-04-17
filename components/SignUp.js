@@ -45,9 +45,10 @@ const SignUp = () => {
 
       const setUpUser = async () =>{
   
-        e.preventDefault();
+        // e.preventDefault();
         const userRef = doc(db, 'users', email);
         await setDoc(userRef, { updated: Timestamp.fromDate(new Date()) }, { merge: true });
+        setEmail(email);
         localStorage.setItem("userEmail", email);
         router.push('/blogs')
       }

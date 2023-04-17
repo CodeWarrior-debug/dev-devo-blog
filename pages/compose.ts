@@ -7,11 +7,9 @@ import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useEffect } from "react";
-import { db } from "@/lib/firesStoreRef";
+import { db } from "../lib/firesStoreRef";
 import { getCountFromServer, collection } from "firebase/firestore";
-import Navbar from "@/components/Navbar";
-
-// title,post,author,date,subtitle,url,idNum,tagsArr,commentsArr
+import Navbar from "../components/Navbar";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -105,7 +103,8 @@ export default function Compose() {
 
   return (
     <>
-      <Navbar />
+    
+      // <Navbar />
       <div className="container position-relative mt-5 pt-3">
         <div className="container position-relative pt-5">
           <div className="text-black flex flex-col justify-start items-center min-h-screen bg-[#0C3BAA] p-[1em] w-full">

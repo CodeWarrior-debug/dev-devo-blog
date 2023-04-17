@@ -20,17 +20,21 @@ const SignIn = () => {
   },[email])
 
 
-
   const signIn = async () => {
-    e.preventDefault();
-    await signInWithEmailAndPassword(auth, email, password)
-      // .then((userCredential) => {
-        localStorage.setItem("userEmail", email);
-        router.push('/blogs')
-      // })
+    // e.preventDefault();
+    localStorage.setItem("userEmail", email);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential)
+      })
       .catch((error) => {
         console.log(error);
       });
+
+      
+      router.push('/blogs')
+
+
 
   };
 

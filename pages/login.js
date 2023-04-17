@@ -1,7 +1,7 @@
-import AuthDetails from '@/components/AuthDetails'
-import Navbar from '@/components/Navbar'
-import SignIn from '@/components/SignIn'
-import SignUp from '@/components/SignUp'
+import AuthDetails from '../components/AuthDetails'
+import Navbar from '../components/Navbar'
+import SignIn from '../components/SignIn'
+import SignUp from '../components/SignUp'
 import React from 'react'
 
 const Login = () => {

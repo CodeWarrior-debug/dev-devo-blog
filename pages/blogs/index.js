@@ -1,6 +1,6 @@
 
-import Navbar from "@/components/Navbar";
-import PostPreviews from "@/components/PostPreviews";
+import Navbar from "../../components/Navbar"
+import PostPreviews from "../../components/PostPreviews";
 import React, { useEffect, useState } from "react";
 
 export default function AllBlogs() {

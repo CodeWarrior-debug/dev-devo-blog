@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Navbar from "@/components/Navbar";
-import Heading from "@/components/Heading";
-import PostPreviews from "@/components/PostPreviews";
+import Navbar from "../components/Navbar";
+import Heading from "../components/Heading";
+import PostPreviews from "../components/PostPreviews";
 import React, { useEffect, useState } from "react";
 
 export default function Home() {
