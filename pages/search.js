@@ -4,9 +4,9 @@ import { useTable, useFilters, useSortBy, useGlobalFilter} from 'react-table'
 // import '../styles/searchtable.module.css'
 import Link from 'next/link'
 import {Table} from 'react-bootstrap'
-import Navbar from '@/components/Navbar'
-import { GlobalFilter } from '@/components/globalFilter'
-import FilterForm from '@/components/FilterForm'
+import Navbar from '../components/Navbar'
+import { GlobalFilter } from '../components/globalFilter'
+import FilterForm from '../components/FilterForm'
 
 const ReactTable = () =>{
 
@@ -81,8 +81,6 @@ const columns = React.useMemo(
 
 const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, preGlobalFilteredRows, setGlobalFilter,state } =
   useTable({ columns, data }, useFilters, useGlobalFilter, useSortBy);
-  // useTable({ columns, data }, useFilters);
-
 
 
 

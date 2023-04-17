@@ -4,6 +4,8 @@ import Heading from "../components/Heading";
 import PostPreviews from "../components/PostPreviews";
 import React, { useEffect, useState } from "react";
 
+// TODO fix linter errors
+
 export default function Home() {
   const [blogs, setBlogs] = useState([]);
 
