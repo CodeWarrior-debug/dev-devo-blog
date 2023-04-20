@@ -3,7 +3,7 @@ import { collection, where, query, getDocs } from "firebase/firestore";
 import { db } from "../../lib/firesStoreRef";
 
 
-export default async function handler(req, res) {
+export default async function handler(req:string, res:string) {
   try {
     const getPost = async () => {
       const q = query(

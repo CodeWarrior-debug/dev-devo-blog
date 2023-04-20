@@ -1,5 +1,6 @@
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../lib/firesStoreRef";
+import router from "next/router";
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
