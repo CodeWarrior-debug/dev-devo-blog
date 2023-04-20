@@ -1,4 +1,5 @@
 
+/* TODO get custom fonts working */
  .ql-font span[data-label="Aref Ruqaa"]::before {
     font-family: "Aref Ruqaa";
   }
