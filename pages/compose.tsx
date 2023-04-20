@@ -4,7 +4,7 @@ import slugify from "slugify";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useEffect } from "react";
 import { db } from "../lib/firesStoreRef";
@@ -35,7 +35,7 @@ export default function Compose() {
   }, []);
   // states
   const [title, setTitle] = useState("");
-  const [idNum, setIdNum] = useState("");
+  const [idNum, setIdNum] = useState(0);
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("CodeWarrior-debug");
   // const [author, setAuthor] = useState("ANONYMOUS")
@@ -65,6 +65,8 @@ export default function Compose() {
       "Content-Type": "application/json",
     },
   };
+
+// TODO figure out what type to assing to these events
 
   function handleTitleChange(event) {
     event.preventDefault();
@@ -104,7 +106,7 @@ export default function Compose() {
   return (
     <>
     
-      // <Navbar />
+      <Navbar/>
       <div className="container position-relative mt-5 pt-3">
         <div className="container position-relative pt-5">
           <div className="text-black flex flex-col justify-start items-center min-h-screen bg-[#0C3BAA] p-[1em] w-full">
@@ -153,7 +155,7 @@ export default function Compose() {
               Submit
             </button>
             :
-            <button href="/login" className="">
+            <button>
               <Link href="/login">LOGIN TO POST AS YOURSELF</Link>
             </button>
             <Toast
