@@ -1,17 +1,19 @@
 
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {getAuth, signInWithEmailAndPassword, } from "firebase/auth";
 import React, { useEffect, useState} from "react";
-import { auth } from "../lib/firesStoreRef";
+import { app } from "../lib/firesStoreRef";
 import { useRouter } from "next/router";
+
 
 // TODO clean out tailwind
 
 const SignIn = () => {
   
-  
+    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const router = useRouter();
+    
     
   useEffect(()=>{
     if (localStorage.getItem("userEmail")){
@@ -22,17 +24,29 @@ const SignIn = () => {
 
   const signIn = async () => {
     // e.preventDefault();
-    localStorage.setItem("userEmail", email);
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential)
+    // console.log(auth,email,password)
+    const auth = getAuth(app)
+    // console.log(JSON.stringify(auth))
+    // window.alert( + email + password)
+    // localStorage.setItem("userEmail", email);
+    
+    await signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+      // .then((userCredential) => {
+        console.log("complete")
+        // console.log(userCredential)
       })
       .catch((error) => {
-        console.log(error);
+        const errorCode=error.code;
+        const errorMessage = error.message;
+        const errorResponse = error.response;
+        window.alert("ERR CODE: " + errorCode + errorMessage+ errorResponse  )
+        // window.alert("ERR CODE: " + errorCode + errorMessage+ errorResponse + errorPrefix )
       });
+    
 
       
-      router.push('/blogs')
+      // router.push('/blogs')
 
 
 

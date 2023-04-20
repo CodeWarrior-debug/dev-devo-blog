@@ -11,7 +11,7 @@ export default function AllBlogs() {
       const data = await res.json();
 
       setBlogs(data);
-      console.log(data);
+      // console.log(data);
     };
 
     getFBDocs();
