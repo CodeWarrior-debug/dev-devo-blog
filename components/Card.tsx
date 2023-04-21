@@ -7,10 +7,10 @@ import cls from "classnames"
 // const alegreya = Alegreya({ subsets: ["latin"] });
 // const montserrat = Montserrat({ subsets: ["latin"] });
 
-const Card = (props) => {
+const Card = (props:any) => {
 
   
-  const connectedTitleUrl = (title, id) => {
+  const connectedTitleUrl = (title:string, id:number | string) => {
     return title.split(" ").join("_") + "-" + id;
   };
 
