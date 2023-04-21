@@ -7,7 +7,7 @@ export default async function handler(req:string, res:string) {
   try {
     const getPosts = async () => {
 
-      let allDocs = [];
+      let allDocs: any[]= [];
       const postsRef = collection(db, "posts");
       const q = query(postsRef, orderBy("idNum", "desc"), limit(5));
 

@@ -16,21 +16,23 @@ export default function Header() {
   };
 
   return (
-    <div className="header">
-      <Link href="/" className="logo">
-        NextAuth.js
-      </Link>
-
-      {session && (
-        <Link href="/" onClick={handleSignout} className="btn-signin">
-          Sign out
-        </Link>
-      )}
-      {!session && (
-        <Link href="/" onClick={handleSignin} className="btn-signin">
-          Sign in
-        </Link>
-      )}
-    </div>
+    <p>hello world</p>
+    // <div className="header">
+    //   <Link href="/" className="logo">
+    //     NextAuth.js
+    //   </Link>
+    //   <div>
+    //     {session && (
+    //       <Link href="#" onClick={handleSignout} className="btn-signin">
+    //         Sign out
+    //       </Link>
+    //     )}
+    //     {!session && (
+    //       <Link href="#" onClick={handleSignin} className="btn-signin">
+    //         Sign in
+    //       </Link>
+    //     )}
+    //   </div>
+    // </div>
   );
 }
