@@ -28,32 +28,6 @@ const CustomUndo = () => (
     </svg>
   );
   
-  // Undo and redo functions for Custom Toolbar
-  function undoChange(this: {
-      undo: () => void; redo: () =>
-        // !!!!!!!!!!!!!!!!!!! MUCH OF THIS IS FOR REFERENCE ONLY!!!!!!!!!!!!!!!!!!
-        // react font adding Codepen - https://codepen.io/alexkrolick/pen/NapmrE
-        // react quill demo Codepen playground - https://codepen.io/alexkrolick/pen/xgyOXQ/left?editors=0010#0
-        // Custom Undo button icon component for Quill editor. You can import it directly
-        // from 'quill/assets/icons/undo.svg' but I found that a number of loaders do not
-        // handle them correctly
-        void;
-    }) {
-    this.quill.history.undo();
-  }
-  function redoChange(this: {
-      undo: () => void; redo: () =>
-        // !!!!!!!!!!!!!!!!!!! MUCH OF THIS IS FOR REFERENCE ONLY!!!!!!!!!!!!!!!!!!
-        // react font adding Codepen - https://codepen.io/alexkrolick/pen/NapmrE
-        // react quill demo Codepen playground - https://codepen.io/alexkrolick/pen/xgyOXQ/left?editors=0010#0
-        // Custom Undo button icon component for Quill editor. You can import it directly
-        // from 'quill/assets/icons/undo.svg' but I found that a number of loaders do not
-        // handle them correctly
-        void;
-    }) {
-    this.quill.history.redo();
-  }
-  
 
 
   // Add sizes to whitelist and register them
@@ -184,11 +158,5 @@ export const QuillToolbar = () => {
 
 }
     
-        
-        
-    
 
-
-    
-  
   export default QuillToolbar;
