@@ -18,8 +18,9 @@ export default function AccessToken() {
   // return <div>Access Token: {accessToken}</div>
   return (
   <>
-    <div>Access Token: </div>
-    <div> {dataString}</div>
+    <h2 className="text-center"> &emsp; Access Token: &emsp; &emsp;</h2>
+    <br/>
+    <p className="w-25"> {dataString}</p>
   </>
   
   )

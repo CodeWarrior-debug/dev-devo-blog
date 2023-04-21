@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { db } from "../lib/firesStoreRef";
 import { getCountFromServer, collection } from "firebase/firestore";
 import Navbar from "../components/Navbar";
+import {useSession} from 'next-auth/react'
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -18,6 +19,8 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
 
 export default function Compose() {
   const router = useRouter();
+
+  const {data:session}= useSession()
 
   useEffect(() => {
     const nextDocNumber = async () => {
@@ -29,6 +32,7 @@ export default function Compose() {
       setIdNum(snapshot.data().count + 1);
       setUpdatedDateTime(dateTimeString);
       setCreatedDateTime(dateTimeString);
+      setAuthor(session?.user.name)
     };
 
     nextDocNumber();

@@ -5,15 +5,17 @@ export default function Component() {
   if (session) {
     return (
       <>
-        Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+       
+       <h2>Signed in as {session.user.name} &emsp; </h2> <br />
+       <h2>Signed in as {session.user.email} &emsp; </h2> <br />
+        <button  className="btn btn-warning btn-lg" onClick={() => signOut()}>SIGN OUT</button>
       </>
     )
   }
   return (
     <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+     <h2>Not signed in &emsp; </h2> <br /> 
+      <button className="btn btn-primary btn-lg" onClick={() => signIn()}>SIGN IN </button>
     </>
   )
 }
