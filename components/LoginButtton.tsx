@@ -7,7 +7,6 @@ export default function Component() {
       <>
        
        <h2>Signed in as {session.user.name} &emsp; </h2> <br />
-       <h2>Signed in as {session.user.email} &emsp; </h2> <br />
         <button  className="btn btn-warning btn-lg" onClick={() => signOut()}>SIGN OUT</button>
       </>
     )

@@ -4,13 +4,14 @@ export default function AccessToken() {
   const { data } = useSession()
 
 
+  
   const dataString = JSON.stringify(data)
 
   useEffect(()=>{
-    if (data){
-      console.log(data)
+    // if (data){
+    //   // console.log(data)
 
-    }
+    // }
   }, [data])
   
   // const { accessToken } = data
