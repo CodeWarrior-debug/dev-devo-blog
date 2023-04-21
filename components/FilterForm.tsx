@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FilterForm = ({ column }) => {
+const FilterForm = ({ column }:any) => {
     const { filterValue, setFilter } = column;
     return (
         <span>

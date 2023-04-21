@@ -5,7 +5,7 @@ import router from "next/router";
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 
-export default async function handler(req, res) {
+export default async function handler(req:any, res:any) {
   
 
   try {

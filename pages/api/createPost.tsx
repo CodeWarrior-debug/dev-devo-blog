@@ -4,20 +4,20 @@ import { db } from "../../lib/firesStoreRef";
 import slugify from "slugify";
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-export default function handler(req, res) {
+export default function handler(req:any, res:any) {
   
   
   try {
-    const title = req.body.title;
-    const postBody = req.body.postBody;
-    const author = req.body.author;
-    const subtitle = req.body.subtitle;
-    const createddateTime = req.body.createddateTime;
-    const updateddateTime = req.body.updateddateTime;
-    const url = slugify(req.body.title).toLowerCase();
-    const idNum = req.body.idNum;
-    const tagsArr = [];
-    const commentsArr = [];
+    const title:string = req.body.title;
+    const postBody:string = req.body.postBody;
+    const author:string = req.body.author;
+    const subtitle:string = req.body.subtitle;
+    const createddateTime:string = req.body.createddateTime;
+    const updateddateTime:string = req.body.updateddateTime;
+    const url:string = slugify(req.body.title).toLowerCase();
+    const idNum:string = req.body.idNum;
+    const tagsArr:any = [];
+    const commentsArr:any = [];
     // const tagsArr = req.body.tagsArr;
     // const commentsArr = req.body.commentsArr;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link'
 
-const PostPreview = (props) => {
+const PostPreview = (props: any) => {
     const {title, subtitle,slug, author} = props;
   return (
     <>

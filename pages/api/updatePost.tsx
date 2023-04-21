@@ -1,7 +1,7 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firesStoreRef";
 
-export default async function handler(req, res) {
+export default async function handler(req:any, res:any) {
 
   try{
 
