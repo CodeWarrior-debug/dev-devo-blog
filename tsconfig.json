@@ -47,6 +47,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/auth/[...nextauth].jsx", "components/AccessToken.tsx", "components/Editor.jsx", "components/globalFilter.jsx", "components/LoginButtton.jsx", "components/SignIn.jsx", "pages/api/read5Posts.jsx", "pages/api/restricted.jsx", "pages/api/readPosts.jsx", "pages/api/readPost.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/auth/[...nextauth].jsx", "components/AccessToken.tsx", "components/Editor.jsx", "components/globalFilter.jsx", "components/LoginButtton.jsx", "components/SignIn.jsx", "pages/api/read5Posts.jsx", "pages/api/restricted.jsx", "pages/api/readPosts.jsx", "pages/api/readPost.jsx", "pages/blogs/[blog].jsx", "pages/compose.jsx", "pages/search.jsx"],
   "exclude": ["node_modules"]
 }
