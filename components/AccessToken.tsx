@@ -8,15 +8,10 @@ export default function AccessToken() {
   const dataString = JSON.stringify(data)
 
   useEffect(()=>{
-    // if (data){
-    //   // console.log(data)
 
-    // }
   }, [data])
   
-  // const { accessToken } = data
 
-  // return <div>Access Token: {accessToken}</div>
   return (
   <>
     <h2 className="text-center"> &emsp; Access Token: &emsp; &emsp;</h2>
