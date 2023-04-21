@@ -47,6 +47,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/auth/[...nextauth].jsx", "components/AccessToken.jsx"],
   "exclude": ["node_modules"]
 }
